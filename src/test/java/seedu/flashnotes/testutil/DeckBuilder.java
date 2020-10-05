@@ -8,22 +8,22 @@ import seedu.flashnotes.model.flashcard.Flashcard;
  * Example usage: <br>
  *     {@code FlashNotes ab = new FlashNotesBuilder().withFlashcard("John", "Doe").build();}
  */
-public class FlashNotesBuilder {
+public class DeckBuilder {
 
     private Deck deck;
 
-    public FlashNotesBuilder() {
+    public DeckBuilder() {
         deck = new Deck();
     }
 
-    public FlashNotesBuilder(Deck deck) {
+    public DeckBuilder(Deck deck) {
         this.deck = deck;
     }
 
     /**a
      * Adds a new {@code Flashcard} to the {@code FlashNotes} that we are building.
      */
-    public FlashNotesBuilder withFlashcard(Flashcard flashcard) {
+    public DeckBuilder withFlashcard(Flashcard flashcard) {
         deck.addFlashcard(flashcard);
         return this;
     }

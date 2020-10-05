@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.flashnotes.commons.core.GuiSettings;
 import seedu.flashnotes.model.flashcard.QuestionContainsKeywordsPredicate;
-import seedu.flashnotes.testutil.FlashNotesBuilder;
+import seedu.flashnotes.testutil.DeckBuilder;
 
 public class ModelManagerTest {
 
@@ -96,7 +96,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        Deck deck = new FlashNotesBuilder().withFlashcard(WHAT).withFlashcard(WHO).build();
+        Deck deck = new DeckBuilder().withFlashcard(WHAT).withFlashcard(WHO).build();
         Deck differentDeck = new Deck();
         UserPrefs userPrefs = new UserPrefs();
 
