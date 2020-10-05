@@ -9,15 +9,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.flashnotes.commons.exceptions.IllegalValueException;
-import seedu.flashnotes.model.FlashNotes;
-import seedu.flashnotes.model.ReadOnlyFlashNotes;
+import seedu.flashnotes.model.Deck;
+import seedu.flashnotes.model.ReadOnlyDeck;
 import seedu.flashnotes.model.flashcard.Flashcard;
 
 /**
  * An Immutable FlashNotes that is serializable to JSON format.
  */
 @JsonRootName(value = "flashnotes")
-class JsonSerializableFlashNotes {
+class JsonSerializableDeck {
 
     public static final String MESSAGE_DUPLICATE_FLASHCARD = "Flashcards list contains duplicate flashcard(s).";
 
@@ -27,7 +27,7 @@ class JsonSerializableFlashNotes {
      * Constructs a {@code JsonSerializableFlashNotes} with the given flashcards.
      */
     @JsonCreator
-    public JsonSerializableFlashNotes(@JsonProperty("flashcards") List<JsonAdaptedFlashcard> flashcards) {
+    public JsonSerializableDeck(@JsonProperty("flashcards") List<JsonAdaptedFlashcard> flashcards) {
         this.flashcards.addAll(flashcards);
     }
 
@@ -36,7 +36,7 @@ class JsonSerializableFlashNotes {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableFlashNotes}.
      */
-    public JsonSerializableFlashNotes(ReadOnlyFlashNotes source) {
+    public JsonSerializableDeck(ReadOnlyDeck source) {
         flashcards.addAll(source.getFlashcardList().stream()
                 .map(JsonAdaptedFlashcard::new).collect(Collectors.toList()));
     }
@@ -46,16 +46,16 @@ class JsonSerializableFlashNotes {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public FlashNotes toModelType() throws IllegalValueException {
-        FlashNotes flashNotes = new FlashNotes();
+    public Deck toModelType() throws IllegalValueException {
+        Deck deck = new Deck();
         for (JsonAdaptedFlashcard jsonAdaptedFlashcard : flashcards) {
             Flashcard flashcard = jsonAdaptedFlashcard.toModelType();
-            if (flashNotes.hasFlashcard(flashcard)) {
+            if (deck.hasFlashcard(flashcard)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_FLASHCARD);
             }
-            flashNotes.addFlashcard(flashcard);
+            deck.addFlashcard(flashcard);
         }
-        return flashNotes;
+        return deck;
     }
 
 }

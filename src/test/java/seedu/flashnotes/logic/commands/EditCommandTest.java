@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 import seedu.flashnotes.commons.core.Messages;
 import seedu.flashnotes.commons.core.index.Index;
 import seedu.flashnotes.logic.commands.EditCommand.EditFlashcardDescriptor;
-import seedu.flashnotes.model.FlashNotes;
+import seedu.flashnotes.model.Deck;
 import seedu.flashnotes.model.Model;
 import seedu.flashnotes.model.ModelManager;
 import seedu.flashnotes.model.UserPrefs;
@@ -42,7 +42,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard);
 
-        Model expectedModel = new ModelManager(new FlashNotes(model.getFlashNotes()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Deck(model.getFlashNotes()), new UserPrefs());
         expectedModel.setFlashcard(model.getFilteredFlashcardList().get(0), editedFlashcard);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -65,7 +65,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard);
 
-        Model expectedModel = new ModelManager(new FlashNotes(model.getFlashNotes()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Deck(model.getFlashNotes()), new UserPrefs());
         expectedModel.setFlashcard(lastFlashcard, editedFlashcard);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -78,7 +78,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard);
 
-        Model expectedModel = new ModelManager(new FlashNotes(model.getFlashNotes()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Deck(model.getFlashNotes()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -95,7 +95,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard);
 
-        Model expectedModel = new ModelManager(new FlashNotes(model.getFlashNotes()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Deck(model.getFlashNotes()), new UserPrefs());
         expectedModel.setFlashcard(model.getFilteredFlashcardList().get(0), editedFlashcard);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);

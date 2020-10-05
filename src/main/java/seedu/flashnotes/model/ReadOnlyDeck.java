@@ -6,7 +6,7 @@ import seedu.flashnotes.model.flashcard.Flashcard;
 /**
  * Unmodifiable view of an flashnotes
  */
-public interface ReadOnlyFlashNotes {
+public interface ReadOnlyDeck {
 
     /**
      * Returns an unmodifiable view of the flashcards list.

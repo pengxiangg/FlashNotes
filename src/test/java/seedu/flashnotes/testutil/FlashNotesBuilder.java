@@ -1,6 +1,6 @@
 package seedu.flashnotes.testutil;
 
-import seedu.flashnotes.model.FlashNotes;
+import seedu.flashnotes.model.Deck;
 import seedu.flashnotes.model.flashcard.Flashcard;
 
 /**
@@ -10,25 +10,25 @@ import seedu.flashnotes.model.flashcard.Flashcard;
  */
 public class FlashNotesBuilder {
 
-    private FlashNotes flashNotes;
+    private Deck deck;
 
     public FlashNotesBuilder() {
-        flashNotes = new FlashNotes();
+        deck = new Deck();
     }
 
-    public FlashNotesBuilder(FlashNotes flashNotes) {
-        this.flashNotes = flashNotes;
+    public FlashNotesBuilder(Deck deck) {
+        this.deck = deck;
     }
 
     /**a
      * Adds a new {@code Flashcard} to the {@code FlashNotes} that we are building.
      */
     public FlashNotesBuilder withFlashcard(Flashcard flashcard) {
-        flashNotes.addFlashcard(flashcard);
+        deck.addFlashcard(flashcard);
         return this;
     }
 
-    public FlashNotes build() {
-        return flashNotes;
+    public Deck build() {
+        return deck;
     }
 }

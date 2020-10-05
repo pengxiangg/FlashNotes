@@ -5,14 +5,14 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.flashnotes.commons.exceptions.DataConversionException;
-import seedu.flashnotes.model.ReadOnlyFlashNotes;
+import seedu.flashnotes.model.ReadOnlyDeck;
 import seedu.flashnotes.model.ReadOnlyUserPrefs;
 import seedu.flashnotes.model.UserPrefs;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends FlashNotesStorage, UserPrefsStorage {
+public interface Storage extends DeckStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -21,12 +21,12 @@ public interface Storage extends FlashNotesStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getFlashNotesFilePath();
+    Path getDeckFilePath();
 
     @Override
-    Optional<ReadOnlyFlashNotes> readFlashNotes() throws DataConversionException, IOException;
+    Optional<ReadOnlyDeck> readDeck() throws DataConversionException, IOException;
 
     @Override
-    void saveFlashNotes(ReadOnlyFlashNotes flashNotes) throws IOException;
+    void saveDeck(ReadOnlyDeck flashNotes) throws IOException;
 
 }

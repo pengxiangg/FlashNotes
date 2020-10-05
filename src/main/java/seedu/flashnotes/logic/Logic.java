@@ -7,7 +7,7 @@ import seedu.flashnotes.commons.core.GuiSettings;
 import seedu.flashnotes.logic.commands.CommandResult;
 import seedu.flashnotes.logic.commands.exceptions.CommandException;
 import seedu.flashnotes.logic.parser.exceptions.ParseException;
-import seedu.flashnotes.model.ReadOnlyFlashNotes;
+import seedu.flashnotes.model.ReadOnlyDeck;
 import seedu.flashnotes.model.flashcard.Flashcard;
 
 /**
@@ -29,7 +29,7 @@ public interface Logic {
      *
      * @see seedu.flashnotes.model.Model#getFlashNotes()
      */
-    ReadOnlyFlashNotes getFlashNotes();
+    ReadOnlyDeck getFlashNotes();
 
     /** Returns an unmodifiable view of the filtered list of flashcards */
     ObservableList<Flashcard> getFilteredFlashcardList();

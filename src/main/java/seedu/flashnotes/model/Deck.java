@@ -12,7 +12,7 @@ import seedu.flashnotes.model.flashcard.UniqueFlashcardList;
  * Wraps all data at the flashnotes level
  * Duplicates are not allowed (by .isSameFlashcard comparison)
  */
-public class FlashNotes implements ReadOnlyFlashNotes {
+public class Deck implements ReadOnlyDeck {
 
     private final UniqueFlashcardList flashcards;
 
@@ -27,12 +27,12 @@ public class FlashNotes implements ReadOnlyFlashNotes {
         flashcards = new UniqueFlashcardList();
     }
 
-    public FlashNotes() {}
+    public Deck() {}
 
     /**
-     * Creates an FlashNotes using the Flashcards in the {@code toBeCopied}
+     * Creates a Deck using the Flashcards in the {@code toBeCopied}
      */
-    public FlashNotes(ReadOnlyFlashNotes toBeCopied) {
+    public Deck(ReadOnlyDeck toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -50,7 +50,7 @@ public class FlashNotes implements ReadOnlyFlashNotes {
     /**
      * Resets the existing data of this {@code FlashNotes} with {@code newData}.
      */
-    public void resetData(ReadOnlyFlashNotes newData) {
+    public void resetData(ReadOnlyDeck newData) {
         requireNonNull(newData);
 
         setFlashcards(newData.getFlashcardList());
@@ -111,8 +111,8 @@ public class FlashNotes implements ReadOnlyFlashNotes {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FlashNotes // instanceof handles nulls
-                && flashcards.equals(((FlashNotes) other).flashcards));
+                || (other instanceof Deck // instanceof handles nulls
+                && flashcards.equals(((Deck) other).flashcards));
     }
 
     @Override

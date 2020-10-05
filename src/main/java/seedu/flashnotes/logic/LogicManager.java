@@ -13,7 +13,7 @@ import seedu.flashnotes.logic.commands.exceptions.CommandException;
 import seedu.flashnotes.logic.parser.FlashNotesParser;
 import seedu.flashnotes.logic.parser.exceptions.ParseException;
 import seedu.flashnotes.model.Model;
-import seedu.flashnotes.model.ReadOnlyFlashNotes;
+import seedu.flashnotes.model.ReadOnlyDeck;
 import seedu.flashnotes.model.flashcard.Flashcard;
 import seedu.flashnotes.storage.Storage;
 
@@ -46,7 +46,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveFlashNotes(model.getFlashNotes());
+            storage.saveDeck(model.getFlashNotes());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,7 +55,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyFlashNotes getFlashNotes() {
+    public ReadOnlyDeck getFlashNotes() {
         return model.getFlashNotes();
     }
 

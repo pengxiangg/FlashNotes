@@ -19,26 +19,26 @@ import seedu.flashnotes.model.flashcard.Flashcard;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final FlashNotes flashNotes;
+    private final Deck deck;
     private final UserPrefs userPrefs;
     private final FilteredList<Flashcard> filteredFlashcards;
 
     /**
      * Initializes a ModelManager with the given flashNotes and userPrefs.
      */
-    public ModelManager(ReadOnlyFlashNotes flashNotes, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyDeck flashNotes, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(flashNotes, userPrefs);
 
         logger.fine("Initializing with flashnotes: " + flashNotes + " and user prefs " + userPrefs);
 
-        this.flashNotes = new FlashNotes(flashNotes);
+        this.deck = new Deck(flashNotes);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredFlashcards = new FilteredList<>(this.flashNotes.getFlashcardList());
+        filteredFlashcards = new FilteredList<>(this.deck.getFlashcardList());
     }
 
     public ModelManager() {
-        this(new FlashNotes(), new UserPrefs());
+        this(new Deck(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -79,29 +79,29 @@ public class ModelManager implements Model {
     //=========== FlashNotes ================================================================================
 
     @Override
-    public void setFlashNotes(ReadOnlyFlashNotes flashNotes) {
-        this.flashNotes.resetData(flashNotes);
+    public void setFlashNotes(ReadOnlyDeck flashNotes) {
+        this.deck.resetData(flashNotes);
     }
 
     @Override
-    public ReadOnlyFlashNotes getFlashNotes() {
-        return flashNotes;
+    public ReadOnlyDeck getFlashNotes() {
+        return deck;
     }
 
     @Override
     public boolean hasFlashcard(Flashcard flashcard) {
         requireNonNull(flashcard);
-        return flashNotes.hasFlashcard(flashcard);
+        return deck.hasFlashcard(flashcard);
     }
 
     @Override
     public void deleteFlashcard(Flashcard target) {
-        flashNotes.removeFlashcard(target);
+        deck.removeFlashcard(target);
     }
 
     @Override
     public void addFlashcard(Flashcard flashcard) {
-        flashNotes.addFlashcard(flashcard);
+        deck.addFlashcard(flashcard);
         updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
     }
 
@@ -109,7 +109,7 @@ public class ModelManager implements Model {
     public void setFlashcard(Flashcard target, Flashcard editedFlashcard) {
         requireAllNonNull(target, editedFlashcard);
 
-        flashNotes.setFlashcard(target, editedFlashcard);
+        deck.setFlashcard(target, editedFlashcard);
     }
 
     //=========== Filtered Flashcard List Accessors =============================================================
@@ -143,7 +143,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return flashNotes.equals(other.flashNotes)
+        return deck.equals(other.deck)
                 && userPrefs.equals(other.userPrefs)
                 && filteredFlashcards.equals(other.filteredFlashcards);
     }

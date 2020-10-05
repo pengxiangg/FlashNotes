@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 import seedu.flashnotes.commons.core.LogsCenter;
 import seedu.flashnotes.commons.exceptions.DataConversionException;
-import seedu.flashnotes.model.ReadOnlyFlashNotes;
+import seedu.flashnotes.model.ReadOnlyDeck;
 import seedu.flashnotes.model.ReadOnlyUserPrefs;
 import seedu.flashnotes.model.UserPrefs;
 
@@ -17,15 +17,15 @@ import seedu.flashnotes.model.UserPrefs;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private FlashNotesStorage flashNotesStorage;
+    private DeckStorage deckStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code FlashNotesStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(FlashNotesStorage flashNotesStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(DeckStorage deckStorage, UserPrefsStorage userPrefsStorage) {
         super();
-        this.flashNotesStorage = flashNotesStorage;
+        this.deckStorage = deckStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -50,30 +50,30 @@ public class StorageManager implements Storage {
     // ================ FlashNotes methods ==============================
 
     @Override
-    public Path getFlashNotesFilePath() {
-        return flashNotesStorage.getFlashNotesFilePath();
+    public Path getDeckFilePath() {
+        return deckStorage.getDeckFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyFlashNotes> readFlashNotes() throws DataConversionException, IOException {
-        return readFlashNotes(flashNotesStorage.getFlashNotesFilePath());
+    public Optional<ReadOnlyDeck> readDeck() throws DataConversionException, IOException {
+        return readDeck(deckStorage.getDeckFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyFlashNotes> readFlashNotes(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyDeck> readDeck(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return flashNotesStorage.readFlashNotes(filePath);
+        return deckStorage.readDeck(filePath);
     }
 
     @Override
-    public void saveFlashNotes(ReadOnlyFlashNotes flashNotes) throws IOException {
-        saveFlashNotes(flashNotes, flashNotesStorage.getFlashNotesFilePath());
+    public void saveDeck(ReadOnlyDeck flashNotes) throws IOException {
+        saveDeck(flashNotes, deckStorage.getDeckFilePath());
     }
 
     @Override
-    public void saveFlashNotes(ReadOnlyFlashNotes flashNotes, Path filePath) throws IOException {
+    public void saveDeck(ReadOnlyDeck flashNotes, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        flashNotesStorage.saveFlashNotes(flashNotes, filePath);
+        deckStorage.saveDeck(flashNotes, filePath);
     }
 
 }

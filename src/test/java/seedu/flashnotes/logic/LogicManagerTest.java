@@ -22,10 +22,10 @@ import seedu.flashnotes.logic.commands.exceptions.CommandException;
 import seedu.flashnotes.logic.parser.exceptions.ParseException;
 import seedu.flashnotes.model.Model;
 import seedu.flashnotes.model.ModelManager;
-import seedu.flashnotes.model.ReadOnlyFlashNotes;
+import seedu.flashnotes.model.ReadOnlyDeck;
 import seedu.flashnotes.model.UserPrefs;
 import seedu.flashnotes.model.flashcard.Flashcard;
-import seedu.flashnotes.storage.JsonFlashNotesStorage;
+import seedu.flashnotes.storage.JsonDeckStorage;
 import seedu.flashnotes.storage.JsonUserPrefsStorage;
 import seedu.flashnotes.storage.StorageManager;
 import seedu.flashnotes.testutil.FlashcardBuilder;
@@ -41,8 +41,8 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonFlashNotesStorage flashNotesStorage =
-                new JsonFlashNotesStorage(temporaryFolder.resolve("flashnotes.json"));
+        JsonDeckStorage flashNotesStorage =
+                new JsonDeckStorage(temporaryFolder.resolve("flashnotes.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(flashNotesStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -69,8 +69,8 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonFlashNotesIoExceptionThrowingStub
-        JsonFlashNotesStorage flashNotesStorage =
-                new JsonFlashNotesIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionFlashNotes.json"));
+        JsonDeckStorage flashNotesStorage =
+                new JsonDeckIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionFlashNotes.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(flashNotesStorage, userPrefsStorage);
@@ -146,13 +146,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonFlashNotesIoExceptionThrowingStub extends JsonFlashNotesStorage {
-        private JsonFlashNotesIoExceptionThrowingStub(Path filePath) {
+    private static class JsonDeckIoExceptionThrowingStub extends JsonDeckStorage {
+        private JsonDeckIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveFlashNotes(ReadOnlyFlashNotes flashNotes, Path filePath) throws IOException {
+        public void saveDeck(ReadOnlyDeck flashNotes, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

@@ -47,10 +47,10 @@ public interface Model {
     /**
      * Replaces flashnotes data with the data in {@code flashNotes}.
      */
-    void setFlashNotes(ReadOnlyFlashNotes flashNotes);
+    void setFlashNotes(ReadOnlyDeck flashNotes);
 
     /** Returns the FlashNotes */
-    ReadOnlyFlashNotes getFlashNotes();
+    ReadOnlyDeck getFlashNotes();
 
     /**
      * Returns true if a flashcard with the same identity as {@code flashcard} exists in the flashnotes.

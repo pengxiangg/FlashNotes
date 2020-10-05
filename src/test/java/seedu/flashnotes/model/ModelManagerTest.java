@@ -26,7 +26,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new FlashNotes(), new FlashNotes(modelManager.getFlashNotes()));
+        assertEquals(new Deck(), new Deck(modelManager.getFlashNotes()));
     }
 
     @Test
@@ -96,13 +96,13 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        FlashNotes flashNotes = new FlashNotesBuilder().withFlashcard(WHAT).withFlashcard(WHO).build();
-        FlashNotes differentFlashNotes = new FlashNotes();
+        Deck deck = new FlashNotesBuilder().withFlashcard(WHAT).withFlashcard(WHO).build();
+        Deck differentDeck = new Deck();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(flashNotes, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(flashNotes, userPrefs);
+        modelManager = new ModelManager(deck, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(deck, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -115,12 +115,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different flashNotes -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentFlashNotes, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentDeck, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = WHAT.getQuestion().question.split("\\s+");
         modelManager.updateFilteredFlashcardList(new QuestionContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(flashNotes, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(deck, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
@@ -128,6 +128,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setFlashNotesFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(flashNotes, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(deck, differentUserPrefs)));
     }
 }

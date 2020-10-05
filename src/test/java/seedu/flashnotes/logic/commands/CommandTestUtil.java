@@ -13,7 +13,7 @@ import java.util.List;
 
 import seedu.flashnotes.commons.core.index.Index;
 import seedu.flashnotes.logic.commands.exceptions.CommandException;
-import seedu.flashnotes.model.FlashNotes;
+import seedu.flashnotes.model.Deck;
 import seedu.flashnotes.model.Model;
 import seedu.flashnotes.model.flashcard.Flashcard;
 import seedu.flashnotes.model.flashcard.QuestionContainsKeywordsPredicate;
@@ -92,11 +92,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        FlashNotes expectedFlashNotes = new FlashNotes(actualModel.getFlashNotes());
+        Deck expectedDeck = new Deck(actualModel.getFlashNotes());
         List<Flashcard> expectedFilteredList = new ArrayList<>(actualModel.getFilteredFlashcardList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedFlashNotes, actualModel.getFlashNotes());
+        assertEquals(expectedDeck, actualModel.getFlashNotes());
         assertEquals(expectedFilteredList, actualModel.getFilteredFlashcardList());
     }
     /**

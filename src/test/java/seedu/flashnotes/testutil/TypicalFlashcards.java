@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.flashnotes.model.FlashNotes;
+import seedu.flashnotes.model.Deck;
 import seedu.flashnotes.model.flashcard.Flashcard;
 
 /**
@@ -54,8 +54,8 @@ public class TypicalFlashcards {
     /**
      * Returns an {@code FlashNotes} with all the typical flashcards.
      */
-    public static FlashNotes getTypicalFlashNotes() {
-        FlashNotes ab = new FlashNotes();
+    public static Deck getTypicalFlashNotes() {
+        Deck ab = new Deck();
         for (Flashcard flashcard : getTypicalFlashcards()) {
             ab.addFlashcard(flashcard);
         }

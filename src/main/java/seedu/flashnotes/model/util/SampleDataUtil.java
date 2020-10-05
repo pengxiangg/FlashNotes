@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.flashnotes.model.FlashNotes;
-import seedu.flashnotes.model.ReadOnlyFlashNotes;
+import seedu.flashnotes.model.Deck;
+import seedu.flashnotes.model.ReadOnlyDeck;
 import seedu.flashnotes.model.flashcard.Answer;
 import seedu.flashnotes.model.flashcard.Flashcard;
 import seedu.flashnotes.model.flashcard.Question;
@@ -32,8 +32,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyFlashNotes getSampleFlashNotes() {
-        FlashNotes sampleAb = new FlashNotes();
+    public static ReadOnlyDeck getSampleFlashNotes() {
+        Deck sampleAb = new Deck();
         for (Flashcard sampleFlashcard : getSampleFlashcards()) {
             sampleAb.addFlashcard(sampleFlashcard);
         }

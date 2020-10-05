@@ -21,25 +21,25 @@ import seedu.flashnotes.model.flashcard.Flashcard;
 import seedu.flashnotes.model.flashcard.exceptions.DuplicateFlashcardException;
 import seedu.flashnotes.testutil.FlashcardBuilder;
 
-public class FlashNotesTest {
+public class DeckTest {
 
-    private final FlashNotes flashNotes = new FlashNotes();
+    private final Deck deck = new Deck();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), flashNotes.getFlashcardList());
+        assertEquals(Collections.emptyList(), deck.getFlashcardList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> flashNotes.resetData(null));
+        assertThrows(NullPointerException.class, () -> deck.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyFlashNotes_replacesData() {
-        FlashNotes newData = getTypicalFlashNotes();
-        flashNotes.resetData(newData);
-        assertEquals(newData, flashNotes);
+        Deck newData = getTypicalFlashNotes();
+        deck.resetData(newData);
+        assertEquals(newData, deck);
     }
 
     @Test
@@ -48,47 +48,47 @@ public class FlashNotesTest {
         Flashcard editedAlice = new FlashcardBuilder(WHAT).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Flashcard> newFlashcards = Arrays.asList(WHAT, editedAlice);
-        FlashNotesStub newData = new FlashNotesStub(newFlashcards);
+        DeckStub newData = new DeckStub(newFlashcards);
 
-        assertThrows(DuplicateFlashcardException.class, () -> flashNotes.resetData(newData));
+        assertThrows(DuplicateFlashcardException.class, () -> deck.resetData(newData));
     }
 
     @Test
     public void hasFlashcard_nullFlashcard_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> flashNotes.hasFlashcard(null));
+        assertThrows(NullPointerException.class, () -> deck.hasFlashcard(null));
     }
 
     @Test
     public void hasFlashcard_flashcardNotInFlashNotes_returnsFalse() {
-        assertFalse(flashNotes.hasFlashcard(WHAT));
+        assertFalse(deck.hasFlashcard(WHAT));
     }
 
     @Test
     public void hasFlashcard_flashcardInFlashNotes_returnsTrue() {
-        flashNotes.addFlashcard(WHAT);
-        assertTrue(flashNotes.hasFlashcard(WHAT));
+        deck.addFlashcard(WHAT);
+        assertTrue(deck.hasFlashcard(WHAT));
     }
 
     @Test
     public void hasFlashcard_flashcardWithSameDetailFieldsInFlashNotes_returnsTrue() {
-        flashNotes.addFlashcard(WHAT);
+        deck.addFlashcard(WHAT);
         Flashcard editedAlice = new FlashcardBuilder(WHAT).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(flashNotes.hasFlashcard(editedAlice));
+        assertTrue(deck.hasFlashcard(editedAlice));
     }
 
     @Test
     public void getFlashcardList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> flashNotes.getFlashcardList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> deck.getFlashcardList().remove(0));
     }
 
     /**
      * A stub ReadOnlyFlashNotes whose flashcards list can violate interface constraints.
      */
-    private static class FlashNotesStub implements ReadOnlyFlashNotes {
+    private static class DeckStub implements ReadOnlyDeck {
         private final ObservableList<Flashcard> flashcards = FXCollections.observableArrayList();
 
-        FlashNotesStub(Collection<Flashcard> flashcards) {
+        DeckStub(Collection<Flashcard> flashcards) {
             this.flashcards.setAll(flashcards);
         }
 

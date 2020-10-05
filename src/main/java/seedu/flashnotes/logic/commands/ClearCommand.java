@@ -2,7 +2,7 @@ package seedu.flashnotes.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.flashnotes.model.FlashNotes;
+import seedu.flashnotes.model.Deck;
 import seedu.flashnotes.model.Model;
 
 /**
@@ -17,7 +17,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setFlashNotes(new FlashNotes());
+        model.setFlashNotes(new Deck());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

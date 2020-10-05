@@ -30,7 +30,7 @@ import seedu.flashnotes.testutil.EditFlashcardDescriptorBuilder;
 import seedu.flashnotes.testutil.FlashcardBuilder;
 import seedu.flashnotes.testutil.FlashcardUtil;
 
-public class FlashNotesParserTest {
+public class DeckParserTest {
 
     private final FlashNotesParser parser = new FlashNotesParser();
 

@@ -16,10 +16,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.flashnotes.commons.exceptions.DataConversionException;
-import seedu.flashnotes.model.FlashNotes;
-import seedu.flashnotes.model.ReadOnlyFlashNotes;
+import seedu.flashnotes.model.Deck;
+import seedu.flashnotes.model.ReadOnlyDeck;
 
-public class JsonFlashNotesStorageTest {
+public class JsonDeckStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test",
             "data", "JsonFlashNotesStorageTest");
 
@@ -31,8 +31,8 @@ public class JsonFlashNotesStorageTest {
         assertThrows(NullPointerException.class, () -> readFlashNotes(null));
     }
 
-    private java.util.Optional<ReadOnlyFlashNotes> readFlashNotes(String filePath) throws Exception {
-        return new JsonFlashNotesStorage(Paths.get(filePath)).readFlashNotes(addToTestDataPathIfNotNull(filePath));
+    private java.util.Optional<ReadOnlyDeck> readFlashNotes(String filePath) throws Exception {
+        return new JsonDeckStorage(Paths.get(filePath)).readDeck(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -65,26 +65,26 @@ public class JsonFlashNotesStorageTest {
     @Test
     public void readAndSaveFlashNotes_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempFlashNotes.json");
-        FlashNotes original = getTypicalFlashNotes();
-        JsonFlashNotesStorage jsonFlashNotesStorage = new JsonFlashNotesStorage(filePath);
+        Deck original = getTypicalFlashNotes();
+        JsonDeckStorage jsonFlashNotesStorage = new JsonDeckStorage(filePath);
 
         // Save in new file and read back
-        jsonFlashNotesStorage.saveFlashNotes(original, filePath);
-        ReadOnlyFlashNotes readBack = jsonFlashNotesStorage.readFlashNotes(filePath).get();
-        assertEquals(original, new FlashNotes(readBack));
+        jsonFlashNotesStorage.saveDeck(original, filePath);
+        ReadOnlyDeck readBack = jsonFlashNotesStorage.readDeck(filePath).get();
+        assertEquals(original, new Deck(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addFlashcard(WHO_IS_MEIER);
         original.removeFlashcard(WHAT);
-        jsonFlashNotesStorage.saveFlashNotes(original, filePath);
-        readBack = jsonFlashNotesStorage.readFlashNotes(filePath).get();
-        assertEquals(original, new FlashNotes(readBack));
+        jsonFlashNotesStorage.saveDeck(original, filePath);
+        readBack = jsonFlashNotesStorage.readDeck(filePath).get();
+        assertEquals(original, new Deck(readBack));
 
         // Save and read without specifying file path
         original.addFlashcard(WHAT_IS_MEIER);
-        jsonFlashNotesStorage.saveFlashNotes(original); // file path not specified
-        readBack = jsonFlashNotesStorage.readFlashNotes().get(); // file path not specified
-        assertEquals(original, new FlashNotes(readBack));
+        jsonFlashNotesStorage.saveDeck(original); // file path not specified
+        readBack = jsonFlashNotesStorage.readDeck().get(); // file path not specified
+        assertEquals(original, new Deck(readBack));
 
     }
 
@@ -96,10 +96,10 @@ public class JsonFlashNotesStorageTest {
     /**
      * Saves {@code flashNotes} at the specified {@code filePath}.
      */
-    private void saveFlashNotes(ReadOnlyFlashNotes flashNotes, String filePath) {
+    private void saveFlashNotes(ReadOnlyDeck flashNotes, String filePath) {
         try {
-            new JsonFlashNotesStorage(Paths.get(filePath))
-                    .saveFlashNotes(flashNotes, addToTestDataPathIfNotNull(filePath));
+            new JsonDeckStorage(Paths.get(filePath))
+                    .saveDeck(flashNotes, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
@@ -107,6 +107,6 @@ public class JsonFlashNotesStorageTest {
 
     @Test
     public void saveFlashNotes_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveFlashNotes(new FlashNotes(), null));
+        assertThrows(NullPointerException.class, () -> saveFlashNotes(new Deck(), null));
     }
 }

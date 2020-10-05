@@ -16,9 +16,9 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.flashnotes.commons.core.GuiSettings;
 import seedu.flashnotes.logic.commands.exceptions.CommandException;
-import seedu.flashnotes.model.FlashNotes;
+import seedu.flashnotes.model.Deck;
 import seedu.flashnotes.model.Model;
-import seedu.flashnotes.model.ReadOnlyFlashNotes;
+import seedu.flashnotes.model.ReadOnlyDeck;
 import seedu.flashnotes.model.ReadOnlyUserPrefs;
 import seedu.flashnotes.model.flashcard.Flashcard;
 import seedu.flashnotes.testutil.FlashcardBuilder;
@@ -115,12 +115,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setFlashNotes(ReadOnlyFlashNotes flashNotes) {
+        public void setFlashNotes(ReadOnlyDeck flashNotes) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyFlashNotes getFlashNotes() {
+        public ReadOnlyDeck getFlashNotes() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -187,8 +187,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyFlashNotes getFlashNotes() {
-            return new FlashNotes();
+        public ReadOnlyDeck getFlashNotes() {
+            return new Deck();
         }
     }
 

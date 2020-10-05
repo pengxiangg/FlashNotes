@@ -15,19 +15,11 @@ import seedu.flashnotes.commons.util.ConfigUtil;
 import seedu.flashnotes.commons.util.StringUtil;
 import seedu.flashnotes.logic.Logic;
 import seedu.flashnotes.logic.LogicManager;
-import seedu.flashnotes.model.FlashNotes;
-import seedu.flashnotes.model.Model;
-import seedu.flashnotes.model.ModelManager;
-import seedu.flashnotes.model.ReadOnlyFlashNotes;
-import seedu.flashnotes.model.ReadOnlyUserPrefs;
-import seedu.flashnotes.model.UserPrefs;
+import seedu.flashnotes.model.*;
+import seedu.flashnotes.model.Deck;
 import seedu.flashnotes.model.util.SampleDataUtil;
-import seedu.flashnotes.storage.FlashNotesStorage;
-import seedu.flashnotes.storage.JsonFlashNotesStorage;
-import seedu.flashnotes.storage.JsonUserPrefsStorage;
-import seedu.flashnotes.storage.Storage;
-import seedu.flashnotes.storage.StorageManager;
-import seedu.flashnotes.storage.UserPrefsStorage;
+import seedu.flashnotes.storage.*;
+import seedu.flashnotes.storage.DeckStorage;
 import seedu.flashnotes.ui.Ui;
 import seedu.flashnotes.ui.UiManager;
 
@@ -56,8 +48,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        FlashNotesStorage flashNotesStorage = new JsonFlashNotesStorage(userPrefs.getFlashNotesFilePath());
-        storage = new StorageManager(flashNotesStorage, userPrefsStorage);
+        DeckStorage deckStorage = new JsonDeckStorage(userPrefs.getFlashNotesFilePath());
+        storage = new StorageManager(deckStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -74,20 +66,20 @@ public class MainApp extends Application {
      * or an empty flashnotes book will be used instead if errors occur when reading {@code storage}'s flashnotes book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyFlashNotes> flashNotesOptional;
-        ReadOnlyFlashNotes initialData;
+        Optional<ReadOnlyDeck> flashNotesOptional;
+        ReadOnlyDeck initialData;
         try {
-            flashNotesOptional = storage.readFlashNotes();
+            flashNotesOptional = storage.readDeck();
             if (!flashNotesOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample FlashNotes");
             }
             initialData = flashNotesOptional.orElseGet(SampleDataUtil::getSampleFlashNotes);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty FlashNotes");
-            initialData = new FlashNotes();
+            initialData = new Deck();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty FlashNotes");
-            initialData = new FlashNotes();
+            initialData = new Deck();
         }
 
         return new ModelManager(initialData, userPrefs);

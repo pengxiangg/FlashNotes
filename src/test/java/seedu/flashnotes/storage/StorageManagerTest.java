@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.flashnotes.commons.core.GuiSettings;
-import seedu.flashnotes.model.FlashNotes;
-import seedu.flashnotes.model.ReadOnlyFlashNotes;
+import seedu.flashnotes.model.Deck;
+import seedu.flashnotes.model.ReadOnlyDeck;
 import seedu.flashnotes.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -24,7 +24,7 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonFlashNotesStorage flashNotesStorage = new JsonFlashNotesStorage(getTempFilePath("ab"));
+        JsonDeckStorage flashNotesStorage = new JsonDeckStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(flashNotesStorage, userPrefsStorage);
     }
@@ -54,15 +54,15 @@ public class StorageManagerTest {
          * {@link JsonFlashNotesStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonFlashNotesStorageTest} class.
          */
-        FlashNotes original = getTypicalFlashNotes();
-        storageManager.saveFlashNotes(original);
-        ReadOnlyFlashNotes retrieved = storageManager.readFlashNotes().get();
-        assertEquals(original, new FlashNotes(retrieved));
+        Deck original = getTypicalFlashNotes();
+        storageManager.saveDeck(original);
+        ReadOnlyDeck retrieved = storageManager.readDeck().get();
+        assertEquals(original, new Deck(retrieved));
     }
 
     @Test
     public void getFlashNotesFilePath() {
-        assertNotNull(storageManager.getFlashNotesFilePath());
+        assertNotNull(storageManager.getDeckFilePath());
     }
 
 }
