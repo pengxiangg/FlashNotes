@@ -6,17 +6,18 @@ import java.util.Optional;
 
 import seedu.flashnotes.commons.exceptions.DataConversionException;
 import seedu.flashnotes.model.Deck;
+import seedu.flashnotes.model.FlashNotes;
 import seedu.flashnotes.model.ReadOnlyDeck;
 
 /**
  * Represents a storage for {@link Deck}.
  */
-public interface DeckStorage {
+public interface FlashNotesStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getDeckFilePath();
+    Path getFlashNotesFilePath();
 
     /**
      * Returns FlashNotes data as a {@link ReadOnlyDeck}.
@@ -24,23 +25,23 @@ public interface DeckStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyDeck> readDeck() throws DataConversionException, IOException;
+    Optional<FlashNotes> readFlashNotes() throws DataConversionException, IOException;
 
     /**
-     * @see #getDeckFilePath()
+     * @see #getFlashNotesFilePath()
      */
-    Optional<ReadOnlyDeck> readDeck(Path filePath) throws DataConversionException, IOException;
+    Optional<FlashNotes> readFlashNotes(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyDeck} to the storage.
      * @param flashNotes cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveDeck(ReadOnlyDeck flashNotes) throws IOException;
+    void saveFlashNotes(FlashNotes flashNotes) throws IOException;
 
     /**
-     * @see #saveDeck(ReadOnlyDeck)
+     * @see #saveFlashNotes (ReadOnlyDeck)
      */
-    void saveDeck(ReadOnlyDeck flashNotes, Path filePath) throws IOException;
+    void saveFlashNotes(FlashNotes flashNotes, Path filePath) throws IOException;
 
 }

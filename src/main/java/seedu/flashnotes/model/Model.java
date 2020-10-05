@@ -45,12 +45,20 @@ public interface Model {
     void setFlashNotesFilePath(Path flashNotesFilePath);
 
     /**
-     * Replaces flashnotes data with the data in {@code flashNotes}.
+     * Replaces deck data with the data in {@code deck}.
      */
-    void setFlashNotes(ReadOnlyDeck flashNotes);
+    void setDeck(ReadOnlyDeck deck);
 
-    /** Returns the FlashNotes */
-    ReadOnlyDeck getFlashNotes();
+    /**
+     * Replaces FlashNotes data with the data in {@code flashNotes}
+     */
+    void setFlashNotes(FlashNotes flashNotes);
+
+    /** Returns the Deck */
+    ReadOnlyDeck getDeck();
+
+    /** Returns the Flashnotes */
+    FlashNotes getFlashNotes();
 
     /**
      * Returns true if a flashcard with the same identity as {@code flashcard} exists in the flashnotes.

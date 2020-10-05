@@ -17,9 +17,10 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.flashnotes.commons.exceptions.DataConversionException;
 import seedu.flashnotes.model.Deck;
+import seedu.flashnotes.model.FlashNotes;
 import seedu.flashnotes.model.ReadOnlyDeck;
 
-public class JsonDeckStorageTest {
+public class JsonFlashNotesStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test",
             "data", "JsonFlashNotesStorageTest");
 
@@ -31,8 +32,8 @@ public class JsonDeckStorageTest {
         assertThrows(NullPointerException.class, () -> readFlashNotes(null));
     }
 
-    private java.util.Optional<ReadOnlyDeck> readFlashNotes(String filePath) throws Exception {
-        return new JsonDeckStorage(Paths.get(filePath)).readDeck(addToTestDataPathIfNotNull(filePath));
+    private java.util.Optional<FlashNotes> readFlashNotes(String filePath) throws Exception {
+        return new JsonFlashNotesStorage(Paths.get(filePath)).readFlashNotes(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -65,11 +66,11 @@ public class JsonDeckStorageTest {
     @Test
     public void readAndSaveFlashNotes_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempFlashNotes.json");
-        Deck original = getTypicalFlashNotes();
-        JsonDeckStorage jsonFlashNotesStorage = new JsonDeckStorage(filePath);
+        FlashNotes original = getTypicalFlashNotes();
+        JsonFlashNotesStorage jsonFlashNotesStorage = new JsonFlashNotesStorage(filePath);
 
         // Save in new file and read back
-        jsonFlashNotesStorage.saveDeck(original, filePath);
+        jsonFlashNotesStorage.saveFlashNotes(original, filePath);
         ReadOnlyDeck readBack = jsonFlashNotesStorage.readDeck(filePath).get();
         assertEquals(original, new Deck(readBack));
 
@@ -98,8 +99,8 @@ public class JsonDeckStorageTest {
      */
     private void saveFlashNotes(ReadOnlyDeck flashNotes, String filePath) {
         try {
-            new JsonDeckStorage(Paths.get(filePath))
-                    .saveDeck(flashNotes, addToTestDataPathIfNotNull(filePath));
+            new JsonFlashNotesStorage(Paths.get(filePath))
+                    .saveFlashNotes(flashNotes, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

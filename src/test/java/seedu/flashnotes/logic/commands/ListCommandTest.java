@@ -23,7 +23,7 @@ public class ListCommandTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalFlashNotes(), new UserPrefs());
-        expectedModel = new ModelManager(model.getFlashNotes(), new UserPrefs());
+        expectedModel = new ModelManager(model.getDeck(), new UserPrefs());
     }
 
     @Test

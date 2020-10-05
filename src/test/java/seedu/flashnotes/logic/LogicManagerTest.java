@@ -25,7 +25,7 @@ import seedu.flashnotes.model.ModelManager;
 import seedu.flashnotes.model.ReadOnlyDeck;
 import seedu.flashnotes.model.UserPrefs;
 import seedu.flashnotes.model.flashcard.Flashcard;
-import seedu.flashnotes.storage.JsonDeckStorage;
+import seedu.flashnotes.storage.JsonFlashNotesStorage;
 import seedu.flashnotes.storage.JsonUserPrefsStorage;
 import seedu.flashnotes.storage.StorageManager;
 import seedu.flashnotes.testutil.FlashcardBuilder;
@@ -41,8 +41,8 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonDeckStorage flashNotesStorage =
-                new JsonDeckStorage(temporaryFolder.resolve("flashnotes.json"));
+        JsonFlashNotesStorage flashNotesStorage =
+                new JsonFlashNotesStorage(temporaryFolder.resolve("flashnotes.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(flashNotesStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -69,8 +69,8 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonFlashNotesIoExceptionThrowingStub
-        JsonDeckStorage flashNotesStorage =
-                new JsonDeckIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionFlashNotes.json"));
+        JsonFlashNotesStorage flashNotesStorage =
+                new JsonFlashNotesIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionFlashNotes.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(flashNotesStorage, userPrefsStorage);
@@ -126,7 +126,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getFlashNotes(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getDeck(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -146,8 +146,8 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonDeckIoExceptionThrowingStub extends JsonDeckStorage {
-        private JsonDeckIoExceptionThrowingStub(Path filePath) {
+    private static class JsonFlashNotesIoExceptionThrowingStub extends JsonFlashNotesStorage {
+        private JsonFlashNotesIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 

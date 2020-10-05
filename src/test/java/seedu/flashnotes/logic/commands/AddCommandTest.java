@@ -115,12 +115,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setFlashNotes(ReadOnlyDeck flashNotes) {
+        public void setDeck(ReadOnlyDeck flashNotes) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyDeck getFlashNotes() {
+        public ReadOnlyDeck getDeck() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -187,7 +187,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyDeck getFlashNotes() {
+        public ReadOnlyDeck getDeck() {
             return new Deck();
         }
     }

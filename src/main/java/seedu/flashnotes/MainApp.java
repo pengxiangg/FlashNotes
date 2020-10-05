@@ -19,7 +19,7 @@ import seedu.flashnotes.model.*;
 import seedu.flashnotes.model.Deck;
 import seedu.flashnotes.model.util.SampleDataUtil;
 import seedu.flashnotes.storage.*;
-import seedu.flashnotes.storage.DeckStorage;
+import seedu.flashnotes.storage.FlashNotesStorage;
 import seedu.flashnotes.ui.Ui;
 import seedu.flashnotes.ui.UiManager;
 
@@ -48,8 +48,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        DeckStorage deckStorage = new JsonDeckStorage(userPrefs.getFlashNotesFilePath());
-        storage = new StorageManager(deckStorage, userPrefsStorage);
+        FlashNotesStorage flashNotesStorage = new JsonFlashNotesStorage(userPrefs.getFlashNotesFilePath());
+        storage = new StorageManager(flashNotesStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -66,10 +66,10 @@ public class MainApp extends Application {
      * or an empty flashnotes book will be used instead if errors occur when reading {@code storage}'s flashnotes book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyDeck> flashNotesOptional;
+        Optional<FlashNotes> flashNotesOptional;
         ReadOnlyDeck initialData;
         try {
-            flashNotesOptional = storage.readDeck();
+            flashNotesOptional = storage.readFlashNotes();
             if (!flashNotesOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample FlashNotes");
             }

@@ -27,7 +27,7 @@ public interface Logic {
     /**
      * Returns the FlashNotes.
      *
-     * @see seedu.flashnotes.model.Model#getFlashNotes()
+     * @see seedu.flashnotes.model.Model#getDeck()
      */
     ReadOnlyDeck getFlashNotes();
 

@@ -14,4 +14,6 @@ public interface ReadOnlyDeck {
      */
     ObservableList<Flashcard> getFlashcardList();
 
+
+    String getDeckName();
 }

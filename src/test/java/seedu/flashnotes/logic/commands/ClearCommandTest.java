@@ -24,7 +24,7 @@ public class ClearCommandTest {
     public void execute_nonEmptyFlashNotes_success() {
         Model model = new ModelManager(getTypicalFlashNotes(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalFlashNotes(), new UserPrefs());
-        expectedModel.setFlashNotes(new Deck());
+        expectedModel.setDeck(new Deck());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }

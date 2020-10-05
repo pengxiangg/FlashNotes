@@ -6,48 +6,39 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
-
 import seedu.flashnotes.commons.exceptions.IllegalValueException;
 import seedu.flashnotes.model.Deck;
 import seedu.flashnotes.model.ReadOnlyDeck;
 import seedu.flashnotes.model.flashcard.Flashcard;
 
-/**
- * An Immutable FlashNotes that is serializable to JSON format.
- */
-@JsonRootName(value = "flashnotes")
-class JsonSerializableDeck {
+public class JsonAdaptedDeck {
 
     public static final String MESSAGE_DUPLICATE_FLASHCARD = "Flashcards list contains duplicate flashcard(s).";
 
+    private final String deckName;
     private final List<JsonAdaptedFlashcard> flashcards = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableFlashNotes} with the given flashcards.
+     * Constructs a {@code JsonAdaptedDeck} with the given deck details.
      */
     @JsonCreator
-    public JsonSerializableDeck(@JsonProperty("flashcards") List<JsonAdaptedFlashcard> flashcards) {
-        this.flashcards.addAll(flashcards);
+    public JsonAdaptedDeck(@JsonProperty("deckName") String deckName,
+                           @JsonProperty("cards") List<JsonAdaptedFlashcard> cards) {
+        this.deckName = deckName;
+        this.flashcards.addAll(cards);
     }
 
     /**
-     * Converts a given {@code ReadOnlyFlashNotes} into this class for Jackson use.
-     *
-     * @param source future changes to this will not affect the created {@code JsonSerializableFlashNotes}.
+     * Converts a given {@code Deck} into this class for Jackson use.
      */
-    public JsonSerializableDeck(ReadOnlyDeck source) {
-        flashcards.addAll(source.getFlashcardList().stream()
+    public JsonAdaptedDeck(ReadOnlyDeck deck) {
+        deckName = deck.getDeckName();
+        flashcards.addAll(deck.getFlashcardList().stream()
                 .map(JsonAdaptedFlashcard::new).collect(Collectors.toList()));
     }
 
-    /**
-     * Converts this flashnotes into the model's {@code FlashNotes} object.
-     *
-     * @throws IllegalValueException if there were any data constraints violated.
-     */
     public Deck toModelType() throws IllegalValueException {
-        Deck deck = new Deck();
+        Deck deck = new Deck(deckName);
         for (JsonAdaptedFlashcard jsonAdaptedFlashcard : flashcards) {
             Flashcard flashcard = jsonAdaptedFlashcard.toModelType();
             if (deck.hasFlashcard(flashcard)) {
@@ -57,5 +48,6 @@ class JsonSerializableDeck {
         }
         return deck;
     }
+
 
 }

@@ -14,6 +14,7 @@ import seedu.flashnotes.model.flashcard.UniqueFlashcardList;
  */
 public class Deck implements ReadOnlyDeck {
 
+    private final String deckName;
     private final UniqueFlashcardList flashcards;
 
     /*
@@ -27,13 +28,13 @@ public class Deck implements ReadOnlyDeck {
         flashcards = new UniqueFlashcardList();
     }
 
-    public Deck() {}
+    public Deck(String deckName) { this.deckName = deckName; }
 
     /**
      * Creates a Deck using the Flashcards in the {@code toBeCopied}
      */
-    public Deck(ReadOnlyDeck toBeCopied) {
-        this();
+    public Deck(String deckName, ReadOnlyDeck toBeCopied) {
+        this(deckName);
         resetData(toBeCopied);
     }
 
@@ -92,6 +93,10 @@ public class Deck implements ReadOnlyDeck {
      */
     public void removeFlashcard(Flashcard key) {
         flashcards.remove(key);
+    }
+
+    public String getDeckName() {
+        return deckName;
     }
 
     //// util methods

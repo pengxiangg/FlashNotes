@@ -42,7 +42,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard);
 
-        Model expectedModel = new ModelManager(new Deck(model.getFlashNotes()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Deck(model.getDeck()), new UserPrefs());
         expectedModel.setFlashcard(model.getFilteredFlashcardList().get(0), editedFlashcard);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -65,7 +65,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard);
 
-        Model expectedModel = new ModelManager(new Deck(model.getFlashNotes()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Deck(model.getDeck()), new UserPrefs());
         expectedModel.setFlashcard(lastFlashcard, editedFlashcard);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -78,7 +78,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard);
 
-        Model expectedModel = new ModelManager(new Deck(model.getFlashNotes()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Deck(model.getDeck()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -95,7 +95,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard);
 
-        Model expectedModel = new ModelManager(new Deck(model.getFlashNotes()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Deck(model.getDeck()), new UserPrefs());
         expectedModel.setFlashcard(model.getFilteredFlashcardList().get(0), editedFlashcard);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -115,7 +115,7 @@ public class EditCommandTest {
         showFlashcardAtIndex(model, INDEX_FIRST_FLASHCARD);
 
         // edit flashcard in filtered list into a duplicate in flashnotes
-        Flashcard flashcardInList = model.getFlashNotes().getFlashcardList()
+        Flashcard flashcardInList = model.getDeck().getFlashcardList()
                 .get(INDEX_SECOND_FLASHCARD.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_FLASHCARD,
                 new EditFlashcardDescriptorBuilder(flashcardInList).build());
@@ -142,7 +142,7 @@ public class EditCommandTest {
         showFlashcardAtIndex(model, INDEX_FIRST_FLASHCARD);
         Index outOfBoundIndex = INDEX_SECOND_FLASHCARD;
         // ensures that outOfBoundIndex is still in bounds of flashnotes list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getFlashNotes().getFlashcardList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getDeck().getFlashcardList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditFlashcardDescriptorBuilder().withQuestion(VALID_QUESTION_BOB).build());

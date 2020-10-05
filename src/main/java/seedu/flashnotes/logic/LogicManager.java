@@ -46,7 +46,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveDeck(model.getFlashNotes());
+            storage.saveDeck(model.getDeck());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -56,7 +56,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ReadOnlyDeck getFlashNotes() {
-        return model.getFlashNotes();
+        return model.getDeck();
     }
 
     @Override

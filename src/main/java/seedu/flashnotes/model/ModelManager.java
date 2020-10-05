@@ -79,12 +79,12 @@ public class ModelManager implements Model {
     //=========== FlashNotes ================================================================================
 
     @Override
-    public void setFlashNotes(ReadOnlyDeck flashNotes) {
+    public void setDeck(ReadOnlyDeck flashNotes) {
         this.deck.resetData(flashNotes);
     }
 
     @Override
-    public ReadOnlyDeck getFlashNotes() {
+    public ReadOnlyDeck getDeck() {
         return deck;
     }
 

@@ -12,41 +12,42 @@ import seedu.flashnotes.commons.exceptions.DataConversionException;
 import seedu.flashnotes.commons.exceptions.IllegalValueException;
 import seedu.flashnotes.commons.util.FileUtil;
 import seedu.flashnotes.commons.util.JsonUtil;
+import seedu.flashnotes.model.FlashNotes;
 import seedu.flashnotes.model.ReadOnlyDeck;
 
 /**
  * A class to access FlashNotes data stored as a json file on the hard disk.
  */
-public class JsonDeckStorage implements DeckStorage {
+public class JsonFlashNotesStorage implements FlashNotesStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonDeckStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonFlashNotesStorage.class);
 
     private Path filePath;
 
-    public JsonDeckStorage(Path filePath) {
+    public JsonFlashNotesStorage(Path filePath) {
         this.filePath = filePath;
     }
 
-    public Path getDeckFilePath() {
+    public Path getFlashNotesFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyDeck> readDeck() throws DataConversionException {
-        return readDeck(filePath);
+    public Optional<FlashNotes> readFlashNotes() throws DataConversionException {
+        return readFlashNotes(filePath);
     }
 
     /**
-     * Similar to {@link #readDeck()}.
+     * Similar to {@link #readFlashNotes()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyDeck> readDeck(Path filePath) throws DataConversionException {
+    public Optional<FlashNotes> readFlashNotes(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableDeck> jsonFlashNotes = JsonUtil.readJsonFile(
-                filePath, JsonSerializableDeck.class);
+        Optional<JsonSerializableFlashNotes> jsonFlashNotes = JsonUtil.readJsonFile(
+                filePath, JsonSerializableFlashNotes.class);
         if (!jsonFlashNotes.isPresent()) {
             return Optional.empty();
         }
@@ -60,21 +61,21 @@ public class JsonDeckStorage implements DeckStorage {
     }
 
     @Override
-    public void saveDeck(ReadOnlyDeck flashNotes) throws IOException {
-        saveDeck(flashNotes, filePath);
+    public void saveFlashNotes(FlashNotes flashNotes) throws IOException {
+        saveFlashNotes(flashNotes, filePath);
     }
 
     /**
-     * Similar to {@link #saveDeck(ReadOnlyDeck)}.
+     * Similar to {@link #saveFlashNotes(FlashNotes)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveDeck(ReadOnlyDeck flashNotes, Path filePath) throws IOException {
+    public void saveFlashNotes(FlashNotes flashNotes, Path filePath) throws IOException {
         requireNonNull(flashNotes);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableDeck(flashNotes), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableFlashNotes(flashNotes), filePath);
     }
 
 }
