@@ -93,13 +93,16 @@ public class FlashNotes implements ReadOnlyFlashNotes {
     /**
      * Returns true if a flashcard with the same identity as {@code flashcard} exists in the flashnotes.
      */
-    public boolean hasFlashcard(Tag tag, Flashcard flashcard) {
+    public boolean hasFlashcard(Flashcard flashcard) {
         requireNonNull(flashcard);
+        /*
         if (tagUniqueFlashcardListMap.containsKey(tag)) {
             return tagUniqueFlashcardListMap.get(tag).contains(flashcard);
         } else {
             return false;
-        }
+        }*/
+
+        return tagUniqueFlashcardListMap.containsValue(flashcard);
     }
 
     /**
@@ -121,17 +124,26 @@ public class FlashNotes implements ReadOnlyFlashNotes {
      * The flashcard identity of {@code editedFlashcard} must not be the same
      * as another existing flashcard in the flashnotes.
      */
-    public void setFlashcard(Tag tag, Flashcard target, Flashcard editedFlashcard) {
+    public void setFlashcard(Flashcard target, Flashcard editedFlashcard) {
         requireNonNull(editedFlashcard);
-        tagUniqueFlashcardListMap.get(tag).setFlashcard(target, editedFlashcard);
+        Set<Tag> tags = tagUniqueFlashcardListMap.keySet();
+        for (Tag tag : tags) {
+            tagUniqueFlashcardListMap.get(tag).setFlashcard(target, editedFlashcard);
+        }
+
+        //tagUniqueFlashcardListMap.get(tag).setFlashcard(target, editedFlashcard);
     }
 
     /**
      * Removes {@code key} from this {@code FlashNotes}.
      * {@code key} must exist in the flashnotes.
      */
-    public void removeFlashcard(Tag tag, Flashcard key) {
-        tagUniqueFlashcardListMap.get(tag).remove(key);
+    public void removeFlashcard(Flashcard key) {
+        //tagUniqueFlashcardListMap.get(tag).remove(key);
+        Set<Tag> tags = tagUniqueFlashcardListMap.keySet();
+        for (Tag tag : tags) {
+            tagUniqueFlashcardListMap.get(tag).remove(key);
+        }
     }
 
     //// util methods

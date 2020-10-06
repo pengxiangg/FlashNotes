@@ -56,13 +56,13 @@ public interface Model {
     /**
      * Returns true if a flashcard with the same identity as {@code flashcard} exists in the flashnotes.
      */
-    boolean hasFlashcard(Tag tag, Flashcard flashcard);
+    boolean hasFlashcard(Flashcard flashcard);
 
     /**
      * Deletes the given flashcard.
      * The flashcard must exist in the flashnotes.
      */
-    void deleteFlashcard(Tag tag, Flashcard target);
+    void deleteFlashcard(Flashcard target);
 
     /**
      * Adds the given flashcard.
@@ -76,7 +76,7 @@ public interface Model {
      * The flashcard identity of {@code editedFlashcard} must not be the same
      * as another existing flashcard in the flashnotes.
      */
-    void setFlashcard(Tag tag, Flashcard target, Flashcard editedFlashcard);
+    void setFlashcard(Flashcard target, Flashcard editedFlashcard);
 
     /** Returns an unmodifiable view of the filtered flashcard list */
     ObservableList<Flashcard> getFilteredFlashcardList();

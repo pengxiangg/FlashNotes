@@ -94,15 +94,15 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasFlashcard(Tag tag, Flashcard flashcard) {
-        requireAllNonNull(tag, flashcard);
-        return flashNotes.hasFlashcard(tag, flashcard);
+    public boolean hasFlashcard(Flashcard flashcard) {
+        requireAllNonNull(flashcard);
+        return flashNotes.hasFlashcard(flashcard);
     }
 
     @Override
-    public void deleteFlashcard(Tag tag, Flashcard target) {
+    public void deleteFlashcard(Flashcard target) {
 
-        flashNotes.removeFlashcard(tag, target);
+        flashNotes.removeFlashcard(target);
     }
 
     @Override
@@ -112,10 +112,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setFlashcard(Tag tag, Flashcard target, Flashcard editedFlashcard) {
-        requireAllNonNull(tag, target, editedFlashcard);
+    public void setFlashcard(Flashcard target, Flashcard editedFlashcard) {
+        requireAllNonNull(target, editedFlashcard);
 
-        flashNotes.setFlashcard(tag, target, editedFlashcard);
+        flashNotes.setFlashcard(target, editedFlashcard);
     }
 
     //=========== Filtered Flashcard List Accessors =============================================================
