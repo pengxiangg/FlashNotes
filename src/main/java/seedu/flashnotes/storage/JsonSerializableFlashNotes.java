@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.flashnotes.commons.exceptions.IllegalValueException;
 import seedu.flashnotes.model.FlashNotes;
+import seedu.flashnotes.model.FlashcardTagPair;
 import seedu.flashnotes.model.ReadOnlyFlashNotes;
 import seedu.flashnotes.model.flashcard.Flashcard;
 
@@ -21,13 +22,13 @@ class JsonSerializableFlashNotes {
 
     public static final String MESSAGE_DUPLICATE_FLASHCARD = "Flashcards list contains duplicate flashcard(s).";
 
-    private final List<JsonAdaptedFlashcard> flashcards = new ArrayList<>();
+    private final List<JsonAdaptedFlashcardTagPair> flashcards = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableFlashNotes} with the given flashcards.
      */
     @JsonCreator
-    public JsonSerializableFlashNotes(@JsonProperty("flashcards") List<JsonAdaptedFlashcard> flashcards) {
+    public JsonSerializableFlashNotes(@JsonProperty("flashcards") List<JsonAdaptedFlashcardTagPair> flashcards) {
         this.flashcards.addAll(flashcards);
     }
 
@@ -37,8 +38,8 @@ class JsonSerializableFlashNotes {
      * @param source future changes to this will not affect the created {@code JsonSerializableFlashNotes}.
      */
     public JsonSerializableFlashNotes(ReadOnlyFlashNotes source) {
-        flashcards.addAll(source.getFlashcardList().stream()
-                .map(JsonAdaptedFlashcard::new).collect(Collectors.toList()));
+        flashcards.addAll(source.getFlashcardTagPairList().stream()
+                .map(JsonAdaptedFlashcardTagPair::new).collect(Collectors.toList()));
     }
 
     /**
@@ -48,12 +49,12 @@ class JsonSerializableFlashNotes {
      */
     public FlashNotes toModelType() throws IllegalValueException {
         FlashNotes flashNotes = new FlashNotes();
-        for (JsonAdaptedFlashcard jsonAdaptedFlashcard : flashcards) {
-            Flashcard flashcard = jsonAdaptedFlashcard.toModelType();
-            if (flashNotes.hasFlashcard(flashcard)) {
+        for (JsonAdaptedFlashcardTagPair jsonAdaptedFlashcardTagPair : flashcards) {
+            FlashcardTagPair flashcardTagPair = jsonAdaptedFlashcardTagPair.toModelType();
+            if (flashNotes.hasFlashcard(flashcardTagPair.getFlashcard())) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_FLASHCARD);
             }
-            flashNotes.addFlashcard(flashcard);
+            flashNotes.addFlashcard(flashcardTagPair.getTag(), flashcardTagPair.getFlashcard());
         }
         return flashNotes;
     }

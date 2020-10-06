@@ -170,6 +170,19 @@ public class FlashNotes implements ReadOnlyFlashNotes {
         return returnAllList;
     }
 
+    @Override
+    public ObservableList<FlashcardTagPair> getFlashcardTagPairList() {
+        ObservableList<FlashcardTagPair> returnList = FXCollections.observableArrayList();
+        Set<Tag> tags = tagUniqueFlashcardListMap.keySet();
+        for (Tag tag : tags) {
+            ObservableList<Flashcard> flashcards = tagUniqueFlashcardListMap.get(tag).asUnmodifiableObservableList();
+            for (Flashcard flashcard : flashcards) {
+                returnList.add(new FlashcardTagPair(flashcard, tag));
+            }
+        }
+        return returnList;
+    }
+
     public Map<Tag, UniqueFlashcardList> getMap() {
         return tagUniqueFlashcardListMap;
     }

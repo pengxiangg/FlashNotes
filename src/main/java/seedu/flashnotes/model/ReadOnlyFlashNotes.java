@@ -18,6 +18,8 @@ public interface ReadOnlyFlashNotes {
      */
     ObservableList<Flashcard> getAllFlashcardList();
 
+    ObservableList<FlashcardTagPair> getFlashcardTagPairList();
+
     Map<Tag, UniqueFlashcardList> getMap();
 
 
