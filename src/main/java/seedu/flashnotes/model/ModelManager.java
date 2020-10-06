@@ -25,7 +25,7 @@ public class ModelManager implements Model {
     private final FlashNotes flashNotes;
     private final UserPrefs userPrefs;
     private final Map<Tag, FilteredList<Flashcard>> tagFlashcardMap;
-    private final FilteredList<Flashcard> filteredFlashcards;
+    private FilteredList<Flashcard> filteredFlashcards;
 
     /**
      * Initializes a ModelManager with the given flashNotes and userPrefs.
@@ -135,6 +135,10 @@ public class ModelManager implements Model {
         filteredFlashcards.setPredicate(predicate);
     }
 
+    @Override
+    public void updateFilteredFlashcardListByTag(Tag tag) {
+        filteredFlashcards = new FilteredList<>(flashNotes.getFlashcardByTag(tag));
+    }
 
     @Override
     public boolean equals(Object obj) {

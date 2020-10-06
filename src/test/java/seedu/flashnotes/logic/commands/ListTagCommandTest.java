@@ -20,7 +20,7 @@ import seedu.flashnotes.model.ModelManager;
 import seedu.flashnotes.model.UserPrefs;
 import seedu.flashnotes.model.tag.TagContainsKeywordsPredicate;
 
-public class ListTagsCommandTest {
+public class ListTagCommandTest {
     private Model model = new ModelManager(getTypicalFlashNotes(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalFlashNotes(), new UserPrefs());
 
@@ -31,14 +31,14 @@ public class ListTagsCommandTest {
         TagContainsKeywordsPredicate secondPredicate =
                 new TagContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        ListTagsCommand listTagsFirstCommand = new ListTagsCommand(firstPredicate);
-        ListTagsCommand listTagsSecondCommand = new ListTagsCommand(secondPredicate);
+        ListTagCommand listTagsFirstCommand = new ListTagCommand(firstPredicate);
+        ListTagCommand listTagsSecondCommand = new ListTagCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(listTagsFirstCommand.equals(listTagsFirstCommand));
 
         // same values -> returns true
-        ListTagsCommand listTagsFirstCommandCopy = new ListTagsCommand(firstPredicate);
+        ListTagCommand listTagsFirstCommandCopy = new ListTagCommand(firstPredicate);
         assertTrue(listTagsFirstCommand.equals(listTagsFirstCommandCopy));
 
         // different types -> returns false
@@ -55,7 +55,7 @@ public class ListTagsCommandTest {
     public void execute_zeroKeywords_noFlashcardFound() {
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 0);
         TagContainsKeywordsPredicate predicate = preparePredicate(" ");
-        ListTagsCommand command = new ListTagsCommand(predicate);
+        ListTagCommand command = new ListTagCommand(predicate);
         expectedModel.updateFilteredFlashcardList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredFlashcardList());
@@ -65,7 +65,7 @@ public class ListTagsCommandTest {
     public void execute_multipleKeywords_multipleFlashcardsFound() {
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 3);
         TagContainsKeywordsPredicate predicate = preparePredicate("owesMoney friends");
-        ListTagsCommand command = new ListTagsCommand(predicate);
+        ListTagCommand command = new ListTagCommand(predicate);
         expectedModel.updateFilteredFlashcardList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(WHO, WHAT, HOW), model.getFilteredFlashcardList());

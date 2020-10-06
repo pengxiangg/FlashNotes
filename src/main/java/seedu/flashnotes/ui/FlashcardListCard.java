@@ -47,9 +47,10 @@ public class FlashcardListCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         question.setText(flashcard.getQuestion().question);
         answer.setText(flashcard.getAnswer().value);
+        /*
         flashcard.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));*/
     }
 
     @Override

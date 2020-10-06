@@ -10,6 +10,7 @@ import seedu.flashnotes.model.flashcard.Flashcard;
 /**
  * Tests that a {@code Flashcard}'s {@code Tag} matches any of the keywords given.
  */
+/*
 public class TagContainsKeywordsPredicate implements Predicate<Flashcard> {
     private final List<String> keywords;
 
@@ -32,3 +33,4 @@ public class TagContainsKeywordsPredicate implements Predicate<Flashcard> {
                 && keywords.equals(((TagContainsKeywordsPredicate) other).keywords)); // state check
     }
 }
+*/
