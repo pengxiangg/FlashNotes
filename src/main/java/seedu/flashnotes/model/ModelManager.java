@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.flashnotes.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,6 +14,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.flashnotes.commons.core.GuiSettings;
 import seedu.flashnotes.commons.core.LogsCenter;
 import seedu.flashnotes.model.flashcard.Flashcard;
+import seedu.flashnotes.model.tag.Tag;
 
 /**
  * Represents the in-memory model of the flashnotes data.
@@ -21,6 +24,7 @@ public class ModelManager implements Model {
 
     private final FlashNotes flashNotes;
     private final UserPrefs userPrefs;
+    private final Map<Tag, FilteredList<Flashcard>> tagFlashcardMap;
     private final FilteredList<Flashcard> filteredFlashcards;
 
     /**
@@ -34,7 +38,8 @@ public class ModelManager implements Model {
 
         this.flashNotes = new FlashNotes(flashNotes);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredFlashcards = new FilteredList<>(this.flashNotes.getFlashcardList());
+        this.tagFlashcardMap = new HashMap<>(this.flashNotes.getTagFlashcardMap());
+        this.filteredFlashcards = new FilteredList<>(this.flashNotes.getAllFlashcardList());
     }
 
     public ModelManager() {
@@ -89,27 +94,28 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasFlashcard(Flashcard flashcard) {
-        requireNonNull(flashcard);
-        return flashNotes.hasFlashcard(flashcard);
+    public boolean hasFlashcard(Tag tag, Flashcard flashcard) {
+        requireAllNonNull(tag, flashcard);
+        return flashNotes.hasFlashcard(tag, flashcard);
     }
 
     @Override
-    public void deleteFlashcard(Flashcard target) {
-        flashNotes.removeFlashcard(target);
+    public void deleteFlashcard(Tag tag, Flashcard target) {
+
+        flashNotes.removeFlashcard(tag, target);
     }
 
     @Override
-    public void addFlashcard(Flashcard flashcard) {
-        flashNotes.addFlashcard(flashcard);
+    public void addFlashcard(Tag tag, Flashcard flashcard) {
+        flashNotes.addFlashcard(tag, flashcard);
         updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
     }
 
     @Override
-    public void setFlashcard(Flashcard target, Flashcard editedFlashcard) {
-        requireAllNonNull(target, editedFlashcard);
+    public void setFlashcard(Tag tag, Flashcard target, Flashcard editedFlashcard) {
+        requireAllNonNull(tag, target, editedFlashcard);
 
-        flashNotes.setFlashcard(target, editedFlashcard);
+        flashNotes.setFlashcard(tag, target, editedFlashcard);
     }
 
     //=========== Filtered Flashcard List Accessors =============================================================

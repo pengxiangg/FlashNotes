@@ -1,12 +1,20 @@
 package seedu.flashnotes.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.flashnotes.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.flashnotes.model.flashcard.Flashcard;
 import seedu.flashnotes.model.flashcard.UniqueFlashcardList;
+import seedu.flashnotes.model.tag.Tag;
 
 /**
  * Wraps all data at the flashnotes level
@@ -14,7 +22,8 @@ import seedu.flashnotes.model.flashcard.UniqueFlashcardList;
  */
 public class FlashNotes implements ReadOnlyFlashNotes {
 
-    private final UniqueFlashcardList flashcards;
+    //private final UniqueFlashcardList flashcards;
+    private final Map<Tag, UniqueFlashcardList> tagUniqueFlashcardListMap;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,7 +33,8 @@ public class FlashNotes implements ReadOnlyFlashNotes {
      *   among constructors.
      */
     {
-        flashcards = new UniqueFlashcardList();
+        //flashcards = new UniqueFlashcardList();
+        tagUniqueFlashcardListMap = new HashMap<Tag, UniqueFlashcardList>();
     }
 
     public FlashNotes() {}
@@ -32,6 +42,12 @@ public class FlashNotes implements ReadOnlyFlashNotes {
     /**
      * Creates an FlashNotes using the Flashcards in the {@code toBeCopied}
      */
+    /*
+    public FlashNotes(ReadOnlyFlashNotes toBeCopied) {
+        this();
+        resetData(toBeCopied);
+    }*/
+
     public FlashNotes(ReadOnlyFlashNotes toBeCopied) {
         this();
         resetData(toBeCopied);
@@ -43,17 +59,33 @@ public class FlashNotes implements ReadOnlyFlashNotes {
      * Replaces the contents of the flashcard list with {@code flashcards}.
      * {@code flashcards} must not contain duplicate flashcards.
      */
-    public void setFlashcards(List<Flashcard> flashcards) {
-        this.flashcards.setFlashcards(flashcards);
+    public void setFlashcards(Tag tag, List<Flashcard> flashcards) {
+        UniqueFlashcardList uniqueFlashcards = tagUniqueFlashcardListMap.get(tag);
+        uniqueFlashcards.setFlashcards(flashcards);
+    }
+
+    public void setMap(Map<Tag, UniqueFlashcardList> map) {
+        this.tagUniqueFlashcardListMap.putAll(map);
     }
 
     /**
      * Resets the existing data of this {@code FlashNotes} with {@code newData}.
      */
     public void resetData(ReadOnlyFlashNotes newData) {
-        requireNonNull(newData);
+        requireAllNonNull(newData);
+        tagUniqueFlashcardListMap.clear();
+        setMap(newData.getMap());
+    }
 
-        setFlashcards(newData.getFlashcardList());
+
+    public Map<Tag, FilteredList<Flashcard>> getTagFlashcardMap() {
+        Set<Tag> tags = tagUniqueFlashcardListMap.keySet();
+        Map<Tag, FilteredList<Flashcard>> returnMap = new HashMap<>();
+        for (Tag tag : tags) {
+            returnMap.put(tag, new FilteredList<>(
+                    this.tagUniqueFlashcardListMap.get(tag).asUnmodifiableObservableList()));
+        }
+        return returnMap;
     }
 
     //// flashcard-level operations
@@ -61,17 +93,26 @@ public class FlashNotes implements ReadOnlyFlashNotes {
     /**
      * Returns true if a flashcard with the same identity as {@code flashcard} exists in the flashnotes.
      */
-    public boolean hasFlashcard(Flashcard flashcard) {
+    public boolean hasFlashcard(Tag tag, Flashcard flashcard) {
         requireNonNull(flashcard);
-        return flashcards.contains(flashcard);
+        if (tagUniqueFlashcardListMap.containsKey(tag)) {
+            return tagUniqueFlashcardListMap.get(tag).contains(flashcard);
+        } else {
+            return false;
+        }
     }
 
     /**
      * Adds a flashcard to the flashnotes.
      * The flashcard must not already exist in the flashnotes.
      */
-    public void addFlashcard(Flashcard card) {
-        flashcards.add(card);
+    public void addFlashcard(Tag tag, Flashcard card) {
+        if (!tagUniqueFlashcardListMap.containsKey(tag)) {
+            UniqueFlashcardList flashcards = new UniqueFlashcardList();
+            tagUniqueFlashcardListMap.put(tag, flashcards);
+        }
+
+        tagUniqueFlashcardListMap.get(tag).add(card);
     }
 
     /**
@@ -80,18 +121,17 @@ public class FlashNotes implements ReadOnlyFlashNotes {
      * The flashcard identity of {@code editedFlashcard} must not be the same
      * as another existing flashcard in the flashnotes.
      */
-    public void setFlashcard(Flashcard target, Flashcard editedFlashcard) {
+    public void setFlashcard(Tag tag, Flashcard target, Flashcard editedFlashcard) {
         requireNonNull(editedFlashcard);
-
-        flashcards.setFlashcard(target, editedFlashcard);
+        tagUniqueFlashcardListMap.get(tag).setFlashcard(target, editedFlashcard);
     }
 
     /**
      * Removes {@code key} from this {@code FlashNotes}.
      * {@code key} must exist in the flashnotes.
      */
-    public void removeFlashcard(Flashcard key) {
-        flashcards.remove(key);
+    public void removeFlashcard(Tag tag, Flashcard key) {
+        tagUniqueFlashcardListMap.get(tag).remove(key);
     }
 
     //// util methods
@@ -100,23 +140,37 @@ public class FlashNotes implements ReadOnlyFlashNotes {
     public String toString() {
         //return flashcards.asUnmodifiableObservableList().size() + " flashcards";
         // TODO: refine later
-        return flashcards.asUnmodifiableObservableList().toString();
+        String s = "";
+        Set<Tag> tags = tagUniqueFlashcardListMap.keySet();
+        for (Tag tag : tags) {
+            s = s + tagUniqueFlashcardListMap.get(tag).asUnmodifiableObservableList().toString() + " ";
+        }
+        return s;
     }
 
     @Override
-    public ObservableList<Flashcard> getFlashcardList() {
-        return flashcards.asUnmodifiableObservableList();
+    public ObservableList<Flashcard> getAllFlashcardList() {
+        ObservableList<Flashcard> returnAllList = FXCollections.observableArrayList();
+        Set<Tag> tags = tagUniqueFlashcardListMap.keySet();
+        for (Tag tag : tags) {
+            returnAllList.addAll(tagUniqueFlashcardListMap.get(tag).asUnmodifiableObservableList());
+        }
+        return returnAllList;
+    }
+
+    public Map<Tag, UniqueFlashcardList> getMap() {
+        return tagUniqueFlashcardListMap;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FlashNotes // instanceof handles nulls
-                && flashcards.equals(((FlashNotes) other).flashcards));
+                && tagUniqueFlashcardListMap.equals(((FlashNotes) other).tagUniqueFlashcardListMap));
     }
 
     @Override
     public int hashCode() {
-        return flashcards.hashCode();
+        return tagUniqueFlashcardListMap.hashCode();
     }
 }

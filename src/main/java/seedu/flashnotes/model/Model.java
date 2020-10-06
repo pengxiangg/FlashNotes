@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.flashnotes.commons.core.GuiSettings;
 import seedu.flashnotes.model.flashcard.Flashcard;
+import seedu.flashnotes.model.tag.Tag;
 
 /**
  * The API of the Model component.
@@ -55,19 +56,19 @@ public interface Model {
     /**
      * Returns true if a flashcard with the same identity as {@code flashcard} exists in the flashnotes.
      */
-    boolean hasFlashcard(Flashcard flashcard);
+    boolean hasFlashcard(Tag tag, Flashcard flashcard);
 
     /**
      * Deletes the given flashcard.
      * The flashcard must exist in the flashnotes.
      */
-    void deleteFlashcard(Flashcard target);
+    void deleteFlashcard(Tag tag, Flashcard target);
 
     /**
      * Adds the given flashcard.
      * {@code flashcard} must not already exist in the flashnotes.
      */
-    void addFlashcard(Flashcard flashcard);
+    void addFlashcard(Tag tag, Flashcard flashcard);
 
     /**
      * Replaces the given flashcard {@code target} with {@code editedFlashcard}.
@@ -75,7 +76,7 @@ public interface Model {
      * The flashcard identity of {@code editedFlashcard} must not be the same
      * as another existing flashcard in the flashnotes.
      */
-    void setFlashcard(Flashcard target, Flashcard editedFlashcard);
+    void setFlashcard(Tag tag, Flashcard target, Flashcard editedFlashcard);
 
     /** Returns an unmodifiable view of the filtered flashcard list */
     ObservableList<Flashcard> getFilteredFlashcardList();
