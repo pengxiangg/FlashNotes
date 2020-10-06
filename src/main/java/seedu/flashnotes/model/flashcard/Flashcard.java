@@ -19,16 +19,13 @@ public class Flashcard {
     private final Question question;
     private final Answer answer;
 
-    private final Set<Tag> tags = new HashSet<>();
-
     /**
      * Every field must be present and not null.
      */
-    public Flashcard(Question question, Answer answer, Set<Tag> tags) {
-        requireAllNonNull(question, answer, tags);
+    public Flashcard(Question question, Answer answer) {
+        requireAllNonNull(question, answer);
         this.question = question;
         this.answer = answer;
-        this.tags.addAll(tags);
     }
 
     public Question getQuestion() {
@@ -37,14 +34,6 @@ public class Flashcard {
 
     public Answer getAnswer() {
         return answer;
-    }
-
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
     }
 
     /**
@@ -77,14 +66,13 @@ public class Flashcard {
 
         Flashcard otherFlashcard = (Flashcard) other;
         return otherFlashcard.getQuestion().equals(getQuestion())
-                && otherFlashcard.getAnswer().equals(getAnswer())
-                && otherFlashcard.getTags().equals(getTags());
+                && otherFlashcard.getAnswer().equals(getAnswer());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(question, answer, tags);
+        return Objects.hash(question, answer);
     }
 
     @Override
@@ -92,9 +80,7 @@ public class Flashcard {
         final StringBuilder builder = new StringBuilder();
         builder.append(getQuestion())
                 .append(" Answer: ")
-                .append(getAnswer())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
+                .append(getAnswer());
         return builder.toString();
     }
 
