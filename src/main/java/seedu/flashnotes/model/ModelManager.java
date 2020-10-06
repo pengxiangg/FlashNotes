@@ -135,6 +135,7 @@ public class ModelManager implements Model {
         filteredFlashcards.setPredicate(predicate);
     }
 
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
