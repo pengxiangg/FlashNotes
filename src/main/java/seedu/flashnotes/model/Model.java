@@ -15,50 +15,12 @@ public interface Model {
     Predicate<Flashcard> PREDICATE_SHOW_ALL_FLASHCARDS = unused -> true;
 
     /**
-     * Replaces user prefs data with the data in {@code userPrefs}.
-     */
-    void setUserPrefs(ReadOnlyUserPrefs userPrefs);
-
-    /**
-     * Returns the user prefs.
-     */
-    ReadOnlyUserPrefs getUserPrefs();
-
-    /**
-     * Returns the user prefs' GUI settings.
-     */
-    GuiSettings getGuiSettings();
-
-    /**
-     * Sets the user prefs' GUI settings.
-     */
-    void setGuiSettings(GuiSettings guiSettings);
-
-    /**
-     * Returns the user prefs' flashnotes file path.
-     */
-    Path getFlashNotesFilePath();
-
-    /**
-     * Sets the user prefs' flashnotes file path.
-     */
-    void setFlashNotesFilePath(Path flashNotesFilePath);
-
-    /**
      * Replaces deck data with the data in {@code deck}.
      */
     void setDeck(ReadOnlyDeck deck);
 
-    /**
-     * Replaces FlashNotes data with the data in {@code flashNotes}
-     */
-    void setFlashNotes(FlashNotes flashNotes);
-
     /** Returns the Deck */
     ReadOnlyDeck getDeck();
-
-    /** Returns the Flashnotes */
-    FlashNotes getFlashNotes();
 
     /**
      * Returns true if a flashcard with the same identity as {@code flashcard} exists in the flashnotes.

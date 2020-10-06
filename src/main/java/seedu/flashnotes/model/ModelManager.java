@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.flashnotes.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -19,6 +20,7 @@ import seedu.flashnotes.model.flashcard.Flashcard;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+
     private final Deck deck;
     private final UserPrefs userPrefs;
     private final FilteredList<Flashcard> filteredFlashcards;
@@ -26,61 +28,27 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given flashNotes and userPrefs.
      */
-    public ModelManager(ReadOnlyDeck flashNotes, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyDeck deck, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(flashNotes, userPrefs);
+        requireAllNonNull(deck, userPrefs);
 
-        logger.fine("Initializing with flashnotes: " + flashNotes + " and user prefs " + userPrefs);
+        logger.fine("Initializing with deck: " + deck + " and user prefs " + userPrefs);
 
-        this.deck = new Deck(flashNotes);
+        this.deck = new Deck(deck.getDeckName(), deck);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredFlashcards = new FilteredList<>(this.deck.getFlashcardList());
     }
 
-    public ModelManager() {
-        this(new Deck(), new UserPrefs());
+    public ModelManager(String deckName) {
+        this(new Deck(deckName), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
-
-    @Override
-    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-        requireNonNull(userPrefs);
-        this.userPrefs.resetData(userPrefs);
-    }
-
-    @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
-    }
-
-    @Override
-    public GuiSettings getGuiSettings() {
-        return userPrefs.getGuiSettings();
-    }
-
-    @Override
-    public void setGuiSettings(GuiSettings guiSettings) {
-        requireNonNull(guiSettings);
-        userPrefs.setGuiSettings(guiSettings);
-    }
-
-    @Override
-    public Path getFlashNotesFilePath() {
-        return userPrefs.getFlashNotesFilePath();
-    }
-
-    @Override
-    public void setFlashNotesFilePath(Path flashNotesFilePath) {
-        requireNonNull(flashNotesFilePath);
-        userPrefs.setFlashNotesFilePath(flashNotesFilePath);
-    }
 
     //=========== FlashNotes ================================================================================
 
     @Override
-    public void setDeck(ReadOnlyDeck flashNotes) {
-        this.deck.resetData(flashNotes);
+    public void setDeck(ReadOnlyDeck deck) {
+        this.deck.resetData(deck);
     }
 
     @Override

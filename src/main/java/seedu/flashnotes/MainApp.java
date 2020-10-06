@@ -35,7 +35,7 @@ public class MainApp extends Application {
     protected Ui ui;
     protected Logic logic;
     protected Storage storage;
-    protected Model model;
+    protected FlashNotesModelManager model;
     protected Config config;
 
     @Override
@@ -53,7 +53,7 @@ public class MainApp extends Application {
 
         initLogging(config);
 
-        model = initModelManager(storage, userPrefs);
+        model = initFlashNotesModelManager(storage, userPrefs);
 
         logic = new LogicManager(model, storage);
 
@@ -65,9 +65,9 @@ public class MainApp extends Application {
      * The data from the sample flashnotes book will be used instead if {@code storage}'s flashnotes book is not found,
      * or an empty flashnotes book will be used instead if errors occur when reading {@code storage}'s flashnotes book.
      */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+    private FlashNotesModelManager initFlashNotesModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<FlashNotes> flashNotesOptional;
-        ReadOnlyDeck initialData;
+        FlashNotes initialData;
         try {
             flashNotesOptional = storage.readFlashNotes();
             if (!flashNotesOptional.isPresent()) {
@@ -76,13 +76,13 @@ public class MainApp extends Application {
             initialData = flashNotesOptional.orElseGet(SampleDataUtil::getSampleFlashNotes);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty FlashNotes");
-            initialData = new Deck();
+            initialData = new FlashNotes();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty FlashNotes");
-            initialData = new Deck();
+            initialData = new FlashNotes();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new FlashNotesModelManager(initialData, userPrefs);
     }
 
     private void initLogging(Config config) {
