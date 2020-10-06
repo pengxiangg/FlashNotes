@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 
 import seedu.flashnotes.logic.commands.AddCommand;
 import seedu.flashnotes.logic.parser.exceptions.ParseException;
+import seedu.flashnotes.model.FlashcardTagPair;
 import seedu.flashnotes.model.flashcard.Answer;
 import seedu.flashnotes.model.flashcard.Flashcard;
 import seedu.flashnotes.model.flashcard.Question;
@@ -36,11 +37,12 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Question question = ParserUtil.parseQuestion(argMultimap.getValue(PREFIX_QUESTION).get());
         Answer answer = ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Tag tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
 
-        Flashcard flashcard = new Flashcard(question, answer, tagList);
+        Flashcard flashcard = new Flashcard(question, answer);
+        FlashcardTagPair flashcardTagPair = new FlashcardTagPair(flashcard, tag);
 
-        return new AddCommand(flashcard);
+        return new AddCommand(flashcardTagPair);
     }
 
     /**

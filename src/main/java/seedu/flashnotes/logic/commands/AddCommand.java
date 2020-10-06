@@ -6,6 +6,7 @@ import static seedu.flashnotes.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.flashnotes.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.flashnotes.logic.commands.exceptions.CommandException;
+import seedu.flashnotes.model.FlashcardTagPair;
 import seedu.flashnotes.model.Model;
 import seedu.flashnotes.model.flashcard.Flashcard;
 
@@ -30,25 +31,25 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New flashcard added: %1$s";
     public static final String MESSAGE_DUPLICATE_FLASHCARD = "This flashcard already exists in the flashnotes";
 
-    private final Flashcard toAdd;
+    private final FlashcardTagPair toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Flashcard}
      */
-    public AddCommand(Flashcard flashcard) {
-        requireNonNull(flashcard);
-        toAdd = flashcard;
+    public AddCommand(FlashcardTagPair flashcardTagPair) {
+        requireNonNull(flashcardTagPair);
+        toAdd = flashcardTagPair;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasFlashcard(toAdd)) {
+        if (model.hasFlashcard(toAdd.getTag(), toAdd.getFlashcard())) {
             throw new CommandException(MESSAGE_DUPLICATE_FLASHCARD);
         }
 
-        model.addFlashcard(toAdd);
+        model.addFlashcard(toAdd.getTag(), toAdd.getFlashcard());
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
