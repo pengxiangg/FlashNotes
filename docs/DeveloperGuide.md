@@ -610,7 +610,7 @@ The following sequence diagram shows how the endReview command operation works:
 
 ![EndReviewSequenceDiagram](images/EndReviewSequenceDiagram.png)
 
-
+<div style="page-break-after: always;"></div>
 ### Implementation of Critical Classes:
 
 #### Implementation of CommandResult
