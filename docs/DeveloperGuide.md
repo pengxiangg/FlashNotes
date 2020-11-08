@@ -184,7 +184,7 @@ When the review window is open, there would be a total of 2 command boxes on the
 window and one in the review window). We did not think that it would make sense for the user to be interacting with the 
 main window when they are in review mode, so we decided to disable the command box in the main window when the review 
 window is open. This is so that users can focus more on the review session.
-    
+<div style="page-break-after: always;"></div>
 ### Implementation of commands
 
 The following general activity diagram summarizes what happens when a user executes a new command:
