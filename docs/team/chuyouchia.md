@@ -48,8 +48,8 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Updated the documentation for UI component and the [UI class diagram](https://ay2021s1-cs2103t-t15-2.github.io/tp/DeveloperGuide.html#ui-component)
     * Wrote documentation for implementation of deck
-    * Add implementation details of `addDeck` command including [sequence diagrams](https://ay2021s1-cs2103t-t15-2.github.io/tp/DeveloperGuide.html#adding-a-new-deck-feature)
-    * Add implementation details with `FlashNotesParser` [activity diagram](https://ay2021s1-cs2103t-t15-2.github.io/tp/DeveloperGuide.html#implementation-of-flashnotesparser)
+    * Add implementation details of `addDeck` command including [sequence diagrams](https://ay2021s1-cs2103t-t15-2.github.io/tp/DeveloperGuide.html#corresponding-sequence-diagram-for-adddeck-command)
+    * Add implementation details with `FlashNotesParser` [activity diagram](https://ay2021s1-cs2103t-t15-2.github.io/tp/DeveloperGuide.html#corresponding-activity-diagram-for-flashnotesparser)
     * Add activity diagram to explain the execution of `Command`
     * Add design considerations and explanation for the [3 different UIs](https://ay2021s1-cs2103t-t15-2.github.io/tp/DeveloperGuide.html#implementation-of-ui-3-different-modes) available in FlashNotes v1.4
 
