@@ -350,7 +350,8 @@ Outcome Expected:
 ![Set Review Limit After Main](images/setReviewLimit3After_Main.png)
 
 1. You can check that the review limit is indeed 3 by entering the commands `enterDeck Singapore` (which contains 4 flashcards in total) and type `review`. (3 flashcards will be chosen randomly from the deck of 4 cards) Use the `f` and `c` commands to review the flashcards. After reviewing the 3rd flashcard, you should have reached the end of the review session as shown below.
-<br>![Set Review Limit After](images/setReviewLimit3ReviewAfter.png)
+<br><br>
+![Set Review Limit After](images/setReviewLimit3ReviewAfter.png)
 
 1. When an invalid review limit is entered, the following error message will be displayed.
 ![Set Review Limit Error Main](images/SetReviewLimitError_Main.png)
@@ -545,6 +546,7 @@ changed. <br>
 
 </div>
 
+<div style="page-break-after: always;"></div>
 ### Finding flashcards : `find`
 
 Finds flashcards which contain any of the given keywords in their respective questions. 
