@@ -698,6 +698,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* `    | user                                       | hide old cards                 | clear clutter when there are too many cards in the deck                |
 | `*`      | user with many related cards in the app    | nest the card decks by tags    | locate a cards of the same group easily when reviewing                 |
 
+
+<div style="page-break-after: always;"></div>
 ### Use cases
 
 (For all use cases below, the System is the FlashNotes and the Actor is the user, unless specified otherwise)
