@@ -536,7 +536,7 @@ As such, only review sessions initiated from an existing deck will be saved to t
 
 In the event that a user initiated a review session for all of FlashNotes' flashcards, the review statistics will only
 be generated and displayed for the user's benefit, but not save to FlashNotes.
-
+<div style="page-break-after: always;"></div>
 ##### Extending Storage to Include Deck
 
 Seeing as FlashNotes already saves Flashcard data for the user, it seemed reasonable to expand the storage component to 
