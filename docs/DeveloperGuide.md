@@ -1198,7 +1198,6 @@ testers are expected to do more *exploratory* testing.
        Expected: Review Window closes, and you are returned to the Card Mode you started the review session from.
 
 -------------------------------------------------------------------------------------------------------------------
-
 <div style="page-break-after: always;"></div>
 
 ## **Appendix: Effort**
