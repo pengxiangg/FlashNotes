@@ -130,12 +130,11 @@ Users can:
    * **`enterDeck`**`Singapore `: Lists all cards inside the deck 'Singapore'.
 
    * **`exit`** : Exits the app.
-
-<div style="page-break-after: always;"></div>
+<br><br>
    
-7. After executing each command, a success or failure message will be displayed in the **Result Box**. This will let you know if you have successfully executed the relevant commands or not. Given that you have provided the correct command prefixes, it can even provide additional information on why your command has failed.  <br>
+1. After executing each command, a success or failure message will be displayed in the **Result Box**. This will let you know if you have successfully executed the relevant commands or not. Given that you have provided the correct command prefixes, it can even provide additional information on why your command has failed.  <br>
 
-8. Refer to the **Features** section below for the details of each command.
+1. Refer to the **Features** section below for the details of each command.
 
 <div markdown="block" class="alert alert-info">
    
