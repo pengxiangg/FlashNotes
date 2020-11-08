@@ -562,7 +562,7 @@ Examples:
 Outcome Expected:
 1. Enter the find Command into the command box as shown. 
 ![Find Before](images/FindCommandBefore.png)
-
+<br><br>
 1. When successful, the flashcard(s) with questions that contains the matching keywords will be displayed.
 ![Find After](images/FindCommandAfter.png)
 
