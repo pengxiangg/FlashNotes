@@ -1152,6 +1152,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `home` <br>
        Expected: The list of orange decks in the Main Mode can now be seen.
 
+<div style="page-break-after: always;"></div>
 ### Reviewing a deck of cards
 
 1. Opening the review window.
