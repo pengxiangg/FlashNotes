@@ -31,6 +31,7 @@ Here's the Table of Contents for a brief overview of our User Guide, or for you 
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
+
 ## Glossary
 
 * **Flashcard**: A flashcard shows a question and the answer to the question.
@@ -130,6 +131,8 @@ Users can:
 
    * **`exit`** : Exits the app.
 
+<div style="page-break-after: always;"></div>
+   
 1. After executing each command, a success or failure message will be displayed in the **Result Box**. This will let you know if you have successfully executed the relevant commands or not. Given that you have provided the correct command prefixes, it can even provide additional information on why your command has failed.  <br>
 
 1. Refer to the **Features** section below for the details of each command.
@@ -168,8 +171,6 @@ Users can:
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-
-<div style="page-break-after: always;"></div>
 
 ## Main Mode Features
 <div markdown="block" class="alert alert-info">
