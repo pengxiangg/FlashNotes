@@ -23,6 +23,7 @@ Given below are my contributions to the project.
     For example, by allowing Users to add cards **only** in the card mode, users can directly see the new card added.
     * Highlights: Figuring out the design of where to put the checking of the state of the system (home mode or card mode) to ensure that it does not violate any design patterns or principles.
     
+	<div style="page-break-after: always;"></div>
 * **New Feature 3**: Enhancing the feature of viewing all the cards in the entire system.
     * What it does: Users can view the list of all the cards, while adding cards and deleting cards.
     * Justification: Users can conveniently see every single card, and can add, delete, edit or review all cards.
