@@ -1075,6 +1075,7 @@ testers are expected to do more *exploratory* testing.
         Expected: The newly rendered list of flashcards can be seen. The list contains all flashcards currently stored 
         in FlashNotes irrespective of the deck.
 
+<div style="page-break-after: always;"></div>
 ### Adding a card
 
 1. Adding a card in a normal deck created by user.
