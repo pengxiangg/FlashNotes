@@ -29,9 +29,7 @@ Given below are my contributions to the project.
 
 * **Project management**:
     * Managed the release from v1.2 to v1.4 (4 releases) as the Project Lead
-    * Led discussion on prioritization of issues and features and user interface
-    * Organized weekly meetings to finalize features and iron out bugs
-    * Provided input and decision-making when needed outside of organized merge sessions
+    * Led discussions on prioritization of issues and features and user interface
     * Set up github repo and workflows
 
 * **Enhancements to existing features**:
