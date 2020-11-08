@@ -22,9 +22,7 @@ Given below are my contributions to the project.
 <div style="page-break-after: always;"></div>  
 * **New Feature 3**: Created a new UI for Home Screen to render Decks
     * What it does: Enable the user to visually separate a list of decks from list of cards
-    * Justification: Having 2 visually separate screen to view flashcards in gives a sense of the hierarchical relationship between Decks and Flashcards. 
-      
-      This helps to separate the 2 different types of objects rendered and the logic of operating in those differing modes.
+    * Justification: Having 2 visually separate screen to view flashcards in gives a sense of the hierarchical relationship between Decks and Flashcards. This separates the 2 different types of objects rendered and the logic of operating in those differing modes.
     * Highlights: Deciding to split the root nodes out from the Main screen was important in allowing scene swaps to happen. This enabled us to include review window into the card mode screen, while excluding it from the main mode.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=chuyou&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=chuyouchia&tabRepo=AY2021S1-CS2103T-T15-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=functional-code)
