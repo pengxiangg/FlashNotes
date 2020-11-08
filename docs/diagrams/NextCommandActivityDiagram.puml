@@ -6,7 +6,7 @@ start
 'diamond we place it as the true branch instead.
 
 if () then ([flashcard is flipped])
-    if () then ([isCorrect == true])
+    if () then ([isCorrect])
     :Mark isCorrect in
     Flashcard to true;
     :Increase Progress bar

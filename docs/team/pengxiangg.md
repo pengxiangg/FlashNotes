@@ -5,7 +5,7 @@ title: Peng Xiang's Project Portfolio Page
 
 ## Project: FlashNotes
 
-FlashNotes is a desktop address book application used for creating and accessing flashcards for studying. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+FlashNotes is a desktop address book application used for creating and accessing flashcards for studying. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 13 kLoC.
 
 Given below are my contributions to the project.
 
@@ -43,7 +43,7 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Improved the introduction of the User Guide so that Users have a clearer idea of what the User Guide is about.
-    * Added guide and explanation of how to use features such as `editEditName`, `deleteDeck`, and `addCard`
+    * Added a guide and explanation of how to use features such as `editDeckName`, `deleteDeck`, `listAll` and `addCard`
   * Developer Guide:
     * Wrote the explanation for the Model Component
     * Wrote the implementation of the card mode features, the list and listAll features, and the command restriction feature.
@@ -51,5 +51,5 @@ Given below are my contributions to the project.
     * Added new use cases and updated existing use cases to match the correct format.
 
 * **Community**:
-    * PRs reviewed (with non-trival review comments): Examples: [1](https://github.com/AY2021S1-CS2103T-T15-2/tp/pull/146), [2](https://github.com/AY2021S1-CS2103T-T15-2/tp/pull/188)
-
+    * PRs reviewed (with non-trivial review comments): Examples: [1](https://github.com/AY2021S1-CS2103T-T15-2/tp/pull/146), [2](https://github.com/AY2021S1-CS2103T-T15-2/tp/pull/188)
+    * PRs reviewed: Examples: [1](https://github.com/AY2021S1-CS2103T-T15-2/tp/pull/77)

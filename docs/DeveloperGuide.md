@@ -6,7 +6,7 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-## Introduction
+## **Introduction**
 This documentation contains an overview of the structure and implementation of FlashNotes. It is made for 
 developers who wish to maintain, modify or understand the software development behind FlashNotes.
 
@@ -23,6 +23,8 @@ There are a total of 4 sections in this Developer Guide:<br>
     * Requirement: Covers the product scope, user stories, use cases, non-functional requirements and glossary.
     * Manual Testing: Covers how to test each additional feature we added to FlashNotes.
     * Effort: Covers challenges faced.
+
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
@@ -62,6 +64,8 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
@@ -86,6 +90,8 @@ The `UI` component,
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
 
+<div style="page-break-after: always;"></div>
+
 ### Model Component
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -103,6 +109,8 @@ The `model`,
 * FlashNotes will handle the association between `Tag` and `Deck`.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -122,6 +130,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 ![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -150,7 +160,9 @@ Classes used by multiple components are in the `seedu.flashnotes.commons` packag
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Implementation
+<div style="page-break-after: always;"></div>
+
+## **Implementation**
 ### Implementation of UI (3 Different Modes)
 
 Both of the root nodes represent the types of scenes available to the main window:
@@ -220,7 +232,7 @@ In the planning phrase, our team came up with 3 possible alternatives for how we
     * Requires an overhaul of the code base and all references of flashcards.
     * If a card needs to belong to more than 1 deck, then duplicate cards need to be created for that purpose. This results in unnecessary space wasted.
 
-* **Alternative 3:** Decks to be read from the flashcards' tags and updated whenever a new flashcard has been created with a new tag
+* **Alternative 3:** Use tag object in individual flashcards to directly represent deck objects
   * Pros: 
     * Easy to implement by transforming AB3.
   * Cons: 
@@ -246,10 +258,11 @@ Step 2. The user executes `addDeck n/Deck1` command to add a new Deck in the Fla
 
 Step 3. The user is now able to see the new `Deck1` added.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** <br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
 
 If the deck already exists (duplicate deck name), it will throw a `DuplicateDeckException`, so the newly created deck will not be saved into the `FlashNotes`. The implementation details are in UniqueDeckList. 
 Also, AddDeckCommandParser has been removed from the sequence diagram below to simplify the diagram.
+
 </div>
 
 ##### Corresponding sequence diagram for `addDeck` command:
@@ -270,7 +283,7 @@ Our team looked at the 2 different ways in which Add Deck Command can interact w
         * This follows the Facade Pattern where the ModelManager acts as the Facade class to the underlying internal Flashnotes object and all other related data components.
         * Consistency of implementation with the other commands in FlashNotes architecture makes it easier for developers to trace and worth the slight increment in abstraction.
     * Cons:
-        * Some might view that the ModelManager is taking on too much work and turning into a "fat" class
+        * Some might view that the ModelManager is taking on too many methods
 
 * **Alternative 2:** Add Deck command interacts with the underlying FlashNotes object directly.
     * Pros:
@@ -302,18 +315,20 @@ The logic component will reference the these names from the model component duri
 
 ##### Design Considerations: How to implement showing all cards.
 
-**Alternative 1 (current choice):** Allow users to list all flashcards and add flashcards while in this list
-* Pros: User has increased flexibility
-* Cons: Need to check for reserved deck name 
+* **Alternative 1 (current choice):** Allow users to list all flashcards and add flashcards while in this list
+    * Pros: User has increased flexibility of adding cards
+    * Cons: The system needs to check for reserved deck name 
     
-**Alternative 2:** Prevent users to list all flashcards or add flashcards in this list**
-* Pros: System does not have to check and reserve a deck name
-* Cons: User will not be able to see a list of all flashcards
+* **Alternative 2:** Prevent users to list all flashcards
+    * Pros: The system does not have to check and reserve a deck name or use a default deck name
+    * Cons: User will not be able to see a list of all flashcards in FlashNotes
+    
+* **Alternative 3:** Prevent users from adding flashcards while viewing all flashcards
+    * Pros: The system does not have to check and reserve a deck name or use a default deck name
+    * Cons: Will have to implement extra logic to block the card level commands while the user is viewing all flashcards
 
 
 ### Implementation of Card Mode Features
-
-#### Overview of Card Mode Features
 
 Card methods that are supported in Card Mode by `FlashNotes`:
 * `FlashNotes#addFlashcard(Flashcard flashcard)`: Adds a flashcard
@@ -335,15 +350,22 @@ The following sequence diagram shows how the `deleteCard` operation works:
 
 ![DeleteCardDiagram](images/DeleteCardSequenceDiagram.png)
 
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifeline for `deleteCardCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
 ##### Design Considerations: How to implement Card Mode Commands
 
-**Alternative 1 (current choice):** Implement logic of card-level operations in FlashNotes
-* Pros: Easy to implement as all logic is implemented in FlashNotes.
-* Cons: Deck class does not know when the flashcards are modified.
+* **Alternative 1 (current choice):** Implement logic of card-level commands in FlashNotes
+    * Pros: Easy to implement as all logic for card-level commands is implemented in FlashNotes.
+    * Cons: Deck class does not know when the flashcards are modified.
     
-**Alternative 2:** Implement logic of card-level operations in Deck
-* Pros: Deck can modify its own cards.
-* Cons: Need to redesign Flashcard list to be a composition of Deck.
+* **Alternative 2:** Implement logic of card-level operations in Deck
+    * Pros: Deck can modify its own list of flashcards.
+    * Cons: Need to redesign the list of flashcards to be a composition of Deck.
 
 
 
@@ -363,6 +385,7 @@ To support the opening of this review session, we added the following command:
 * `review` - A command that sets up the list of flashcards to review and opens a new review window displaying those cards.
 
 The following is a sequence diagram that demonstrates how a review command sets up the review session:
+
 ![ReviewSequenceDiagram](images/ReviewSequenceDiagram.png)
 
 `ModelManager#setUpReviewList()` method sets up the list of flashcards to review inside `Model`.
@@ -382,7 +405,7 @@ The initial value for the review limit is set to `Integer.MAX_VALUE` in `prefere
 set a review limit and hence the program will allow users to review all their flashcards in a certain deck at each review
 session. 
 
-The valid range of integer inputs for this command is any integer more than 1 however, as we thought it wouldn't 
+The valid range of integer inputs for this command is any integer more than 0. However, as we thought it wouldn't 
 make sense on the user's end to set 0 or negative values as the review limit.
 
 The following is an activity diagram showing how the set review command is intended to be used
@@ -468,18 +491,7 @@ This feature is implemented by adding an isCorrect int in the `Model` of the `Fl
 a function call is made from the `ModelManager#markFlashcardBeingReviewed(int result)` which is a call from 
 `CorrectCommand#execute()` or `WrongCommand#execute()` when it is created by the `FlashNotesParser`.
 
-##### Design Considerations: Next Card Implementation
-* **Alternative 1 (current choice):** Change isCorrect int in the flashcard model
-    * Pros: 
-        * Only need the instance of the flashcard to update or check whether the particular flashcard has been 
-    reviewed correctly by the user in the review mode.
-        * Ensures that the logic of marking the result of user's review of flashcard isn't done in the UI.
-    * Cons: Increases coupling.
-* **Alternative 2:** Implement the int isCorrect in the UI part, IndividualFlashcard.
-    * Pros: No need for extra function calls as marking the result of the review can be directly done in the UI.
-    * Cons: 
-        * Logic is being done in the UI section.
-        * Hard to test using testcases. Have to manually test.
+Design Considerations for Next Card Implementation are similar to that of Flip Card feature.
 
 #### Review Statistics Feature
 
@@ -647,6 +659,8 @@ The following activity diagram shows how the FlashNotesParser works:
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -741,7 +755,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extension:**
 
-* 2a. The given index is invalid.
+* 2a. Deck does not exist in FlashNotes.
     * 2a1. FlashNotes shows an error message.
 
     Use Case ends.   
@@ -816,7 +830,7 @@ Extensions
 
 **Extensions**
     
-* 2a. The given index is invalid.
+* 2a. Card does not exist in FlashNotes.
     * 2a1. FlashNotes shows an error message.
     
     Use case resumes at Step 2.
@@ -836,7 +850,7 @@ Extensions
 
 **Extensions**
 
-* 2a. The given index is invalid.
+* 2a. Card does not exist in FlashNotes.
     * 2a1. FlashNotes shows an error message.
     
     Use case resumes at step 2.
@@ -947,6 +961,8 @@ Extensions
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
@@ -968,8 +984,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   2. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+   2. Re-launch the app by double-clicking the jar file. <br>
+        Expected: The most recent window size and location is retained.
        
 ### Creating a deck
 
@@ -1062,16 +1078,14 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: Enter a deck using the command `enterDeck DECK_NAME`. 
     
-    2. Test case: `addCard q/question1 a/answer1`
-    
+    2. Test case: `addCard q/question1 a/answer1` <br>
         Expected: The specified card is added and shown to the user.
         
 1. Adding a card while in the list of all flashcards.
     
     1. Prerequisites: Enter the list of all flashcards using the command `listAll`.
     
-    2. Test case: `addCard q/question1 a/answer1`
-    
+    2. Test case: `addCard q/question1 a/answer1` <br>
         Expected: The flashcard is added to the list of flashcards shown.
         The specified card is added to a deck called "Default". 
         The "Default" deck will be created in the Main Mode if the deck does not exists.       
@@ -1184,6 +1198,9 @@ testers are expected to do more *exploratory* testing.
        Expected: Review Window closes, and you are returned to the Card Mode you started the review session from.
 
 -------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ## **Appendix: Effort**
 
 ### Challenge 1: UI Modes

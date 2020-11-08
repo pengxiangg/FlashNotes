@@ -20,16 +20,18 @@ To get started, head over to the [Quick Start](#quick-start) section.
 
 To see the summary of all our commands, go to the [Command Summary](#command-summary) section.
 
-Here's the Table of Contents(Under Details) for a brief overview of our User Guide, or for you to quickly access other sections of our User Guide.
+Here's the Table of Contents for a brief overview of our User Guide, or for you to quickly access other sections of our User Guide.
 
 --------------------------------------------------------------------------------------------------------------------
 
-<details markdown="block">
-- Table of Contents
+
+* Table of Contents
 {:toc}
-</details>
+
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Glossary
 
@@ -85,6 +87,8 @@ Users can:
 ![Review Mode GUI Breakdown](images/ReviewMode_GUIBreakdown.png)
 <br>
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Quick start
 
@@ -148,6 +152,8 @@ Users can:
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Explanation of Command Formats used in features
 
 <div markdown="block" class="alert alert-info">
@@ -164,6 +170,8 @@ Users can:
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Main Mode Features
 <div markdown="block" class="alert alert-info">
@@ -258,9 +266,9 @@ Outcome Expected:
 :warning: Things to note:
 
 * Edits the deck at the specified `INDEX`
-* The index refers to the index number shown in the currently displayed list of flashcards
+* The index refers to the index number shown in the currently displayed list of decks.
 * The index **must be a positive integer** 1, 2, 3, …​
-* The `NEWDECKNAME` is case-sensitive
+* The `NEWDECKNAME` is case-sensitive.
 * The `NEWDECKNAME` should not be a name that already exists as a deck.
 
 </div>
@@ -292,7 +300,7 @@ Outcome Expected:
 :warning: Things to note:
 
 * Deletes the deck at the specified `INDEX`
-* The index refers to the index number shown in the currently displayed list of flashcards
+* The index refers to the index number shown in the currently displayed list of decks.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 </div>
@@ -436,7 +444,7 @@ Outcome Expected:
 
 :warning: Things to note:
 
-* All cards and decks will be cleared, including any revision history.
+* All cards and decks will be cleared.
 * No additional inputs should be added behind the clear command.
 * There is no undo command available in the system presently. Hence, the clear command is irreversible.
 </div>
@@ -473,6 +481,8 @@ For further details on how to transfer FlashNotes data, please refer to the [FAQ
 
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Card Mode Features
 <div markdown="block" class="alert alert-info">
@@ -677,6 +687,8 @@ again before using the `review` command.)
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Review Mode Features
 <div markdown="block" class="alert alert-info">
 
@@ -876,53 +888,46 @@ To view the statistics of your last review session for any deck, simply navigate
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## FAQ
 
-<details>
-<summary>How do I transfer my data to another Computer?</summary>
+How do I transfer my data to another Computer?
 <br>
 Install the app in the other computer and overwrite the data file with the file that contains the 
 data of your previous FlashNotes home folder.
 <br><br>
-</details>
 <br>
 
-<details>
-<summary>What should I do if I have problems launching the application?</summary>
+What should I do if I have problems launching the application?
 <br>
 Ensure that Java 11 has been installed on your computer, and that you have the most recent version of the application.
 <br><br>
-</details>
 <br>
 
-<details>
-<summary>When I exit the program, will all my new flashcards and updates be saved?</summary>
+When I exit the program, will all my new flashcards and updates be saved?
 <br>
 Yes! Whatever changes that have been made while the application was running will be saved in the data folder. To 
 ensure none of your data is lost, do not delete the data folder.
 <br><br>
-</details>
 <br>
 
-<details>
-<summary>Is it possible to restore a deck that I just deleted?</summary>
+Is it possible to restore a deck that I just deleted?
 <br>
 Sorry but no. There is no such functionality at this point in time.
 <br><br>
-</details>
 <br>
 
-<details>
-<summary>What should I do when I get a 'Java Quit unexpectedly' error. (For Mac Users)</summary>
+What should I do when I get a 'Java Quit unexpectedly' error. (For Mac Users)
 <br>
-
 Open System Preferences in you computer,  click on ‘Security & Privacy’ and then proceed to click on Privacy Tab and 
 the ‘Input Monitoring’ section. Enable java to monitor input from your keyboard even while using other apps.
-
 <br><br>
-</details>
+
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
@@ -948,7 +953,7 @@ Action | Format, Examples
 **Add Card** | `Format: addCard q/QUESTION a/ANSWER `
 **Delete Card** | `deleteCard INDEX`<br> e.g., `deleteCard 3`
 **Edit Card** | `editCard INDEX [q/QUESTION] [a/ANSWER] [t/TAG]`<br> e.g.,`editCard 2 q/What is the real question? a/This is a real question.`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find President`
 **List** | `list`
 **Help** | `help`
 **Home** | `home`

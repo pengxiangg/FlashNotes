@@ -52,9 +52,5 @@ Flashcard *--> Tag
 FlashNotes *--> "1" UniqueDeckList
 UniqueDeckList o--> "*" Deck
 
-
-ModelManager -->"2" Flashcard : filtered list
-ModelManager -->"1" Deck : filtered list
-
 Deck -right[hidden]- Flashcard
 @enduml
