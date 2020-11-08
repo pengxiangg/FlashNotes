@@ -133,9 +133,9 @@ Users can:
 
 <div style="page-break-after: always;"></div>
    
-1. After executing each command, a success or failure message will be displayed in the **Result Box**. This will let you know if you have successfully executed the relevant commands or not. Given that you have provided the correct command prefixes, it can even provide additional information on why your command has failed.  <br>
+7. After executing each command, a success or failure message will be displayed in the **Result Box**. This will let you know if you have successfully executed the relevant commands or not. Given that you have provided the correct command prefixes, it can even provide additional information on why your command has failed.  <br>
 
-1. Refer to the **Features** section below for the details of each command.
+8. Refer to the **Features** section below for the details of each command.
 
 <div markdown="block" class="alert alert-info">
    
@@ -152,9 +152,7 @@ Users can:
 
 
 --------------------------------------------------------------------------------------------------------------------
-
 <div style="page-break-after: always;"></div>
-
 ## Explanation of Command Formats used in features
 
 <div markdown="block" class="alert alert-info">
@@ -206,7 +204,7 @@ Outcome expected:
 * Only **full phrases** will be matched with the relevant decks e.g. `GE` will not match `GET1025`
 
 </div>
-
+<div style="page-break-after: always;"></div>
 ### Create a new Deck : `addDeck`
 
 Creates a new empty deck and adds to the list of decks displayed.
