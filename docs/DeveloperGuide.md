@@ -1205,21 +1205,15 @@ testers are expected to do more *exploratory* testing.
 
 ### Challenge 1: UI Modes
 At first, the AddressBook3 (AB3) only had 1 interface for users, which is the Main Window that shows a list of people and 
-their details. When developing our flashcard application, we thought that **users should be able to separate their flashcards into
-separate decks**, and also to **review their flashcards in a different place** from where they make/edit their flashcards. We struggled
-with finding a good way to allow users to perform all these actions using the single interface that came with AB3. 
+their details. When developing our flashcard application, we struggled to find a way for users to organize and review
+their flashcards effectively with the single interface that came with AB3. 
 
 The easiest method we explored to achieve this was to modify the `list` command to let users view their flashcards in specific 
 decks, and show the cards one by one when users want to review them. However, we were not satisfied with the visual effect of 
-this solution. We wanted to let users **differentiate their interactions when making/editing the decks and flashcards, and when 
-reviewing flashcards more clearly**.
+this solution. 
 
-The next method we explored required far more effort but was worth it in the end. We **decided to implement 3 different interfaces** 
-for our application, the *Main* mode, the *Card* mode, and the *Review* mode. **Different commands are allowed** in the different modes. 
-In the main mode, the different decks would be displayed to the users. Users can then make new decks or edit current decks in 
-this mode. They can also choose a specific deck to open and see the cards it contains. This brings users into the Card mode, 
-where they can make new flashcards or edit current cards. They can also review their cards by using the review command that brings 
-them to the review mode. 
+The next method we explored was to **implement 3 different interfaces** for our application, the *Main* mode, the *Card*
+mode, and the *Review* mode. **Different commands are allowed** in the different modes. 
 
 Implementing this required us to **redesign the entire UI component** into something with more layers of 
 abstraction and complexity. In doing so, we encountered some problems with the GUI settings not being saved properly and also 
