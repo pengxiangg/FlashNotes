@@ -781,7 +781,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use Case ends.    
     
-
+<div style="page-break-after: always;"></div>
 ##### Use case: UC05 - Show all cards
 
 **Precondition**: User is in the Main Mode.
