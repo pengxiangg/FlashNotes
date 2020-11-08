@@ -312,7 +312,7 @@ The following activity diagrams summarizes what happens when a user adds a new c
 
 The model has the methods `Model#getDefaultDeckName` and `Model#getReservedDeckName` to retrieve the default and reserved deck names. 
 The logic component will reference the these names from the model component during command executions.
-
+<div style="page-break-after: always;"></div>
 ##### Design Considerations: How to implement showing all cards.
 
 * **Alternative 1 (current choice):** Allow users to list all flashcards and add flashcards while in this list
