@@ -13,7 +13,7 @@ Given below are my contributions to the project.
 * **New Feature 1**: Implemented a new type of object named Decks. 
     * What it does: Enables the application to store a different type of object
     * Justification: Implementing Decks is vital to ensuring that flashcards can be organised according to themes and topics for revision purposes. It also enables the tracking of revision statistics on the deck level, which is crucial in any flashcard application.
-    * Highlights: This enhancement affects existing and future commands as many actions revolves around the Deck object type. It required an in-depth analysis of design alternatives to weigh the tradeoff between the value and the speed of development. Details can be found [here](https://ay2021s1-cs2103t-t15-2.github.io/tp/DeveloperGuide.html#3-possible-designs-for-decks-in-main-mode)
+    * Highlights: This enhancement affects existing and future commands as many actions revolves around the Deck object type. It required an in-depth analysis of design alternatives to weigh the tradeoff between the value and the speed of development. Details can be found [here.](https://ay2021s1-cs2103t-t15-2.github.io/tp/DeveloperGuide.html#3-possible-designs-for-decks-in-main-mode)
     
         Implementation in particular was challenging because creating a new object affects all components from UI to Model to even storage. I handled everything end to end, which included UI, business logic and data management.
          This excludes the saving and reading of data which was done by my teammate Rachel.
@@ -36,6 +36,7 @@ Given below are my contributions to the project.
     * Led discussion on prioritization of issues and features and user interface
     * Organized weekly meetings to finalize features and iron out bugs
     * Provided input and decision-making when needed outside of organized merge sessions
+    * Set up github repo and workflows
 
 * **Enhancements to existing features**:
     * Modified the GUI color scheme to provide visual separation between Decks and Flashcards
@@ -47,11 +48,12 @@ Given below are my contributions to the project.
     * Wrote documentation for the features`enterDeck`, `addDeck` and `Home`
     * Standardize documentation format for features in User Guide
   * Developer Guide:
-    * Updated the documentation for UI component
+    * Updated the documentation for UI component and the [UI class diagram](https://ay2021s1-cs2103t-t15-2.github.io/tp/DeveloperGuide.html#ui-component)
     * Wrote documentation for implementation of deck
-    * Add implementation details of `addDeck` command including sequence diagrams
-    * Add `FlashNotesParser` and `Command` activity diagrams
-    * Add design considerations and explanation for the 3 different UIs available in FlashNotes v1.4
+    * Add implementation details of `addDeck` command including [sequence diagrams](https://ay2021s1-cs2103t-t15-2.github.io/tp/DeveloperGuide.html#adding-a-new-deck-feature)
+    * Add implementation details with `FlashNotesParser` [activity diagram](https://ay2021s1-cs2103t-t15-2.github.io/tp/DeveloperGuide.html#implementation-of-flashnotesparser)
+    * Add activity diagram to explain the execution of `Command`
+    * Add design considerations and explanation for the [3 different UIs](https://ay2021s1-cs2103t-t15-2.github.io/tp/DeveloperGuide.html#implementation-of-ui-3-different-modes) available in FlashNotes v1.4
 
 * **Community**:
     * Contributed to forum discussions (example: [1](https://github.com/nus-cs2103-AY2021S1/forum/issues/103))
