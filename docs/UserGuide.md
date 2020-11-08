@@ -939,7 +939,7 @@ Action | Format, Examples
 **Set Review Limit** | `setReviewLimit LIMIT` <br> e.g., `setReviewLimit 30`, `setReviewLimit all`
 **Check Review Limit** | `checkReviewLimit`
 **Exit** | `exit`
-
+<div style="page-break-after: always;"></div>
 ### Card Mode
 
 Action | Format, Examples
@@ -955,7 +955,7 @@ Action | Format, Examples
 **Set Review Limit** | `setReviewLimit LIMIT` <br> e.g., `setReviewLimit 30`, `setReviewLimit all`
 **Check Review Limit** | `checkReviewLimit`
 **Exit** | `exit`
-
+<div style="page-break-after: always;"></div>
 ### Review Mode
 
 Action | Format
