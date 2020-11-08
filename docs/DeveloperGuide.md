@@ -646,6 +646,7 @@ FlashNotesParser is purely an object that determines the commands that are accep
 While inside of the `LogicManager#execute(...)` method, the method checks with Model for the booleans related to mode.
 Afterwards, FlashNotesParser takes in the mode checking booleans obtained from model in `FlashNotesParser#parseCommand(...)`. 
 The booleans regarding the modes enables FlashNotes to be able to decide which of the 3 following methods to use:
+<div style="page-break-after: always;"></div>
 * `parseCommandInReviewMode(...)`
 * `parseCommandInMainMode(...)`
 * `parseCommandInCardMode(...)`
