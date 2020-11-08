@@ -27,7 +27,7 @@ Given below are my contributions to the project.
       This helps to separate the 2 different types of objects rendered and the logic of operating in those differing modes.
     * Highlights: Deciding to split the root nodes out from the Main screen was important in allowing scene swaps to happen. This enabled us to include review window into the card mode screen, while excluding it from the main mode.
 
-* **Code contributed**: [RepoSense link] (https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=chuyou&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=chuyouchia&tabRepo=AY2021S1-CS2103T-T15-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=functional-code)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=chuyou&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=chuyouchia&tabRepo=AY2021S1-CS2103T-T15-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=functional-code)
 
 * **Project management**:
     * Managed the release from v1.2 to v1.4 (4 releases) as the Project Lead
