@@ -503,22 +503,22 @@ this user story, FlashNotes will incorporate a review statistics feature to fulf
 ##### Tracking and Generation of the Review Statistics Feature
 
 During a review session, FlashNotes will keep track of the number of questions the user answered correctly on their 
-first try at the question. In order to compliment the implementation of Review Mode, my implementation made use of the 
-addition of `IndividualFlashcard::correctAnswers` attribute to keep track of the count of questions answered 
+first try at the question. In order to compliment the implementation of Review Mode, the implementation made use of the 
+addition of `correctAnswers` attribute in `IndividualFlashcard` to keep track of the count of questions answered 
 correctly on the first attempt. 
 
 To ensure the variable incrementation is done only if the current flashcard contains a question that the user is attempting
-for the first time in the review session, a check for the `IndividualFlashcard::index` is done to ensure it is within 
-the range of `IndividualFlashcard::numOfFlashcards`.
+for the first time in the review session, a check in `IndividualFlashcard` for the `index` is done to ensure it is within 
+the range of `numOfFlashcards`.
 
 To ensure the variable incrementation is done only if the current flashcard contains a question that the user answered 
 correctly, a check is done for the `isCorrect` variable to ensure that the current flashcard has been marked as
 correct by the user.
 
 At the end of the review session, FlashNotes will display:
- * `IndividualFlashcard::correctAnswers` - The total number of questions marked correct on the user's first attempt at it.
- * `IndividualFlashcard::numOfFlashcards` - The total number of unique questions utilized in the review session.
- * A calculated percentage value generated from `IndividualFlashcard::correctAnswers` and `IndividualFlashcard::numOfFlashcards`.
+ * `correctAnswers` - The total number of questions marked correct on the user's first attempt at it.
+ * `numOfFlashcards` - The total number of unique questions utilized in the review session.
+ * A calculated percentage value generated from `correctAnswers` and `numOfFlashcards`.
 
 The calculated percentage value from a review session will be considered as the 'Review Statistics' in FlashNotes.
 To provide a measure of accuracy, the percentage value will be calculated as a `double` value, which will be rounded off 
@@ -530,7 +530,7 @@ To further help the user keep track of their topic mastery, FlashNotes will save
 last review session initiated in the deck to the `Deck` class, which will be displayed in the Main Mode of FlashNotes, 
 under the relevant Deck's name.
 
-Review Statistics will be saved as the `Deck::resultStatistics` attribute as a String in the current `Deck` class 
+Review Statistics will be saved as the `resultStatistics` attribute as a String in the current `Deck` class 
 design implementation. As a String, it can be easily retrieved and displayed to the user through the UI component.
 As such, only review sessions initiated from an existing deck will be saved to the relevant deck.
 
@@ -569,14 +569,14 @@ A new command have been added to FlashNotes to allow return to Card Mode from Re
 
 To support the storage of each deck's review statistic, a new class has been added to the Storage component in FlashNotes:
 * `JsonAdaptedDeck` object contain two variable for Deck Storage, `String deckName` to identify the deck, and `String resultStatistics` to contain the deck's review statistics.
-* `JsonAdaptedDeck#updateModel(FlashNotes flashNotes)` is a method used to update the generated model from reading the flashcard data with the deck's data. It depends on `FlashNotes#updateDeckPerformanceScore(Integer reviewScore, String deckName)` to update the generated model with the deck data from the save file.
+* `JsonAdaptedDeck#updateModel(FlashNotes flashNotes)` is a method used to update the generated model from reading the flashcard data with the deck's data. It depends on `FlashNotes#updateDeckPerformanceScore(Double reviewScore, String deckName)` to update the generated model with the deck data from the save file.
 
 `JsonSerializableFlashNotes` object has been adjusted to depend on a list of `JsonAdaptedDeck` objects to read and write 
 each deck's data to the FlashNotes save file.
 
 Additionally, the following operations have been implemented to support the storage of result statistics feature:
 * Model component:
-    * `FlashNotes#updateDeckPerformanceScore(Integer reviewScore, String deckName)` - Updates the reviewStatistics attribute of a specific deck (through deckName) with the given Integer value (reviewScore).
+    * `FlashNotes#updateDeckPerformanceScore(Double reviewScore, String deckName)` - Updates the reviewStatistics attribute of a specific deck (through `deckName`) with the given Double value (`reviewScore`).
     * `FlashNotes#getUniqueDeckList()` - Return the FlashNotes' model's `UnqiueDeckList`.
     * `UniqueDeckList#findDeck(String deck)` - Returns an existing `Deck` object from its `internalList` with the same `deckName` as the given String input. If no such `Deck` object exist, a `null` object is returned instead.
 * UI component:
@@ -1227,14 +1227,11 @@ the `Flashcard` object. As out project progressed, there was a need to include a
 object in the Model component of FlashNotes. Our team faced several challenges with our choice to implement the `Deck` class.
 
 Due to the perceived composition relationship between `Deck` and `Flashcard` and the chosen design for `Deck` implementation, 
-deletion of a `Deck` object meant that there was a need to look through all of the `Flashcard` objects in FlashNotes to
-identify and delete any `Flashcard` object with a `Tag` that marked it as a part of the deleted `Deck`.
+commands that result in the change of a `Deck` object (e.g. editting deck name or deleting a deck) meant that there was 
+a need to look through all of the `Flashcard` objects in FlashNotes to carry out the necessary changes regarding the `Deck`
+object depending on the command issued.
 
-Furthermore, editing the name of a `Deck` required us to identify all `Flashcard` objects belonging to that `Deck` before
-editing its `Tag` to the new name of the `Deck` as well. This was due to our implementation choice, as there was no 
-direct composition between `Deck` and `Flashcard` in our current implementation design.
-
-Finally, as part of our **Review Statistics Feature**, we wanted to be able to save the data in the `Deck` class as well. 
+On top of that, as part of our **Review Statistics Feature**, we wanted to be able to save the data in the `Deck` class as well. 
 To support this, we had to expand the old Storage implementation from AB3 to include the addition of the data in the
 `Deck` class. 
 
