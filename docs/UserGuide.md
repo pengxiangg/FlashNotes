@@ -236,7 +236,7 @@ Outcome expected:
 
 </div>
 
-
+<div style="page-break-after: always;"></div>
 ### Rename a new Deck : `editDeckName`
 
 Edit a deck name and the tags of all corresponding cards in the deck. 
@@ -269,8 +269,7 @@ Outcome Expected:
 
 </div>
 
-
-
+<div style="page-break-after: always;"></div>
 ### Delete a new Deck : `deleteDeck`
 
 Deletes the deck and all the associated cards in your specified deck.
@@ -300,7 +299,7 @@ Outcome Expected:
 * The index **must be a positive integer** 1, 2, 3, …​
 
 </div>
-
+<div style="page-break-after: always;"></div>
 ### List all flashcards : `listAll`
 
 Shows a list of all flashcards, and enters card mode.
@@ -323,7 +322,7 @@ Outcome Expected:
 * Note that starting a review in this screen will not attribute the review results to any deck. It will not be stored at the end of the review session.
 
 </div>
-
+<div style="page-break-after: always;"></div>
 ### Set card limit for review session : `setReviewLimit`
 
 Sets the maximum number of cards that can be reviewed in a single review session.
@@ -376,7 +375,7 @@ again after he/she closes and reopens the application)
 
 </div>
 
-
+<div style="page-break-after: always;"></div>
 ### Check card limit for review session : `checkReviewLimit`
 
 Checks the maximum number of cards that can be reviewed in a single review session.
