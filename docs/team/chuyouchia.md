@@ -19,7 +19,7 @@ Given below are my contributions to the project.
          This excludes the saving and reading of data which was done by my teammate Rachel.
   
 * **New Feature 2**: Added the ability to add new Decks via addDeck Command.
-  
+<div style="page-break-after: always;"></div>  
 * **New Feature 3**: Created a new UI for Home Screen to render Decks
     * What it does: Enable the user to visually separate a list of decks from list of cards
     * Justification: Having 2 visually separate screen to view flashcards in gives a sense of the hierarchical relationship between Decks and Flashcards. 
