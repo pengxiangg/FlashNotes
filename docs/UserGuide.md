@@ -30,9 +30,7 @@ Here's the Table of Contents for a brief overview of our User Guide, or for you 
 
 
 --------------------------------------------------------------------------------------------------------------------
-
 <div style="page-break-after: always;"></div>
-
 ## Glossary
 
 * **Flashcard**: A flashcard shows a question and the answer to the question.
