@@ -677,7 +677,7 @@ The following activity diagram shows how the FlashNotesParser works:
 
 **Value proposition**: manage, read and create flashcards faster than a typical mouse/GUI driven app
 
-
+<div style="page-break-after: always;"></div>
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
