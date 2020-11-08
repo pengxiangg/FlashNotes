@@ -499,7 +499,7 @@ FlashNotes application supports testing of the user's knowledge of the flashcard
 In addition to this, as a user wants to be able to see how many cards they got correct after a review session, so that
 they can track their topics' mastery and feel a sense of accomplishment for studying efficiently (user story). Due to
 this user story, FlashNotes will incorporate a review statistics feature to fulfill the user's needs.
-
+<div style="page-break-after: always;"></div>
 ##### Tracking and Generation of the Review Statistics Feature
 
 During a review session, FlashNotes will keep track of the number of questions the user answered correctly on their 
