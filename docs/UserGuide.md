@@ -794,7 +794,7 @@ Examples:
 Outcome Expected: <br>
 1. Initial view of flashcard that has been flipped.
 ![Intitial View](images/wrongCommandStep1.png)
-
+<br><br>
 1. Type `w` into the command box and enter to mark the flashcard as wrong. <br>
 ![Type Wrong Command](images/wrongCommandStep2.png)
 
