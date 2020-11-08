@@ -453,7 +453,7 @@ The following is a sequence diagram that demonstrates how a flip command flips a
 This feature is implemented by adding an isFlipped boolean in the `Model` of the `Flashcard`. To toggle this boolean,
 a function call is made from the `ModelManager#carryOutFlipCommand()` which is called by the `FlipCommand#execute()` 
 when it is created from the `FlashNotesParser`.
-
+<div style="page-break-after: always;"></div>
 ##### Design Considerations: Flip Card Implementation
 * **Alternative 1 (current choice):** Change `isFlipped` boolean in the flashcard model.
     * Pros: 
