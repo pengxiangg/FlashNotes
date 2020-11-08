@@ -50,7 +50,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Responsibilities: In charge of versioning of the code, maintaining the code repository,
 integrating various parts of the software to create a whole.
 
-### Rachel Ho
+### Rachel Ho Xin Ying
 
 <img src="images/rachel170.png" width="200px">
 
