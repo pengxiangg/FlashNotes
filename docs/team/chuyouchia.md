@@ -13,7 +13,7 @@ Given below are my contributions to the project.
 * **New Feature 1**: Implemented a new type of object named Decks. 
     * What it does: Enables the application to store a different type of object
     * Justification: Implementing Decks is vital to ensuring that flashcards can be organised according to themes and topics for revision purposes. It also enables the tracking of revision statistics on the deck level, which is crucial in any flashcard application.
-    * Highlights: This enhancement affects existing and future commands as many actions revolves around the Deck object type. It required an in-depth analysis of design alternatives to weigh the tradeoff between the value and the speed of development. 
+    * Highlights: This enhancement affects existing and future commands as many actions revolves around the Deck object type. It required an in-depth analysis of design alternatives to weigh the tradeoff between the value and the speed of development. Details can be found [here](https://ay2021s1-cs2103t-t15-2.github.io/tp/DeveloperGuide.html#3-possible-designs-for-decks-in-main-mode)
     
         Implementation in particular was challenging because creating a new object affects all components from UI to Model to even storage. I handled everything end to end, which included UI, business logic and data management.
          This excludes the saving and reading of data which was done by my teammate Rachel.
